@@ -1,0 +1,102 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Formulario de registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div id="container">
+    <div class="contLogo">
+      <strong>+ Mujer</strong>
+    </div>
+    <div class="contTexto">
+      <h4>Diligencie el siguiente formulario, son necesarios para tener un registro de sus datos.</h4>
+    </div>
+    <form action="" >
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12" class="contInput">
+            <ion-item>
+              <ion-input type="text" placeholder="Nombre completo*" required></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="contInput">
+            <ion-item>
+              <ion-select value="0">
+                <ion-select-option enabled value="0">Tipo de identificación</ion-select-option>
+                <ion-select-option value="1">Cédula de ciudadanía</ion-select-option>
+                <ion-select-option value="2">Tarjeta de identidad</ion-select-option>
+                <ion-select-option value="3">Tarjeta de extranjería</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6" class="contInput">
+            <ion-item>
+              <ion-input type="text" placeholder="Número" required clearInput></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-input  type="text" placeholder="Dirección recidencia" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-input  type="number" placeholder="Teléfono de contacto" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-input  type="email" placeholder="Correo electrónico" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <p>Los siguientes datos son requeridos para ser utilizados en caso de emergencia y poder ser contactados por medio del botón de pánico. </p>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-input  type="text" placeholder="Nombre contacto 1" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-input  type="number" placeholder="Teléfono 1" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-input  type="text" placeholder="Nombre contacto 2" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-input  type="number" placeholder="Teléfono 2" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-checkbox color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong>leer aquí</strong></i></span>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button (click)="onClick()" color="primary">
+              <ion-icon slot="start" name="send-outline"></ion-icon>
+              Guardar
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button (click)="onClick()" color="danger">
+              <ion-icon slot="start" name="trash-outline"></ion-icon>
+              Cancelar
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    
+
+  </div>
+</ion-content>
