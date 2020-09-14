@@ -1,11 +1,10 @@
-<ion-header [translucent]="true">
+<ion-header class="headerPages">
   <ion-toolbar>
     <ion-title>Formulario de registro</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-
+<ion-content>
   <div id="container">
     <div class="contLogo">
       <strong>+ Mujer</strong>
@@ -18,7 +17,7 @@
         <ion-row>
           <ion-col size="12" class="contInput">
             <ion-item>
-              <ion-input type="text" placeholder="Nombre completo*" required></ion-input>
+              <ion-input type="text" placeholder="Nombre completo*" required clearInput></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6" class="contInput">
@@ -36,17 +35,27 @@
               <ion-input type="text" placeholder="Número" required clearInput></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" class="contInput">
             <ion-item>
-              <ion-input  type="text" placeholder="Dirección recidencia" required clearInput ></ion-input>
+              <ion-input type="text" placeholder="Dirección recidencia" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" class="contInput">
+            <ion-item>
+              <ion-input type="text" placeholder="Ciudad" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="contInput">
+            <ion-item>
+              <ion-input type="text" placeholder="Departamento" required clearInput ></ion-input>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12" class="contInput">
             <ion-item>
               <ion-input  type="number" placeholder="Teléfono de contacto" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12">
+          <ion-col size="12" class="contInput">
             <ion-item>
               <ion-input  type="email" placeholder="Correo electrónico" required clearInput ></ion-input>
             </ion-item>
@@ -55,40 +64,40 @@
       </ion-grid>
       <ion-grid fixed>
         <ion-row>
-          <ion-col size="12">
+          <ion-col size="12" class="contTexto">
             <p>Los siguientes datos son requeridos para ser utilizados en caso de emergencia y poder ser contactados por medio del botón de pánico. </p>
           </ion-col>
-          <ion-col size="6">
+          <ion-col size="6" class="contInput">
             <ion-item>
               <ion-input  type="text" placeholder="Nombre contacto 1" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="6">
+          <ion-col size="6" class="contInput">
             <ion-item>
               <ion-input  type="number" placeholder="Teléfono 1" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="6">
+          <ion-col size="6" class="contInput">
             <ion-item>
               <ion-input  type="text" placeholder="Nombre contacto 2" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="6">
+          <ion-col size="6" class="contInput">
             <ion-item>
               <ion-input  type="number" placeholder="Teléfono 2" required clearInput ></ion-input>
             </ion-item>
           </ion-col>
-          <ion-col size="12">
-            <ion-checkbox color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong>leer aquí</strong></i></span>
+          <ion-col size="12" class="contTexto contInput">
+            <ion-checkbox color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong><ion-badge color="secondary">Leer Aquí</ion-badge></strong></i> </span>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="onClick()" color="primary">
+            <ion-button (click)="onClick()" class="btnAceptar">
               <ion-icon slot="start" name="send-outline"></ion-icon>
               Guardar
             </ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="onClick()" color="danger">
+            <ion-button (click)="onClick()" class="btnCancelar">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Cancelar
             </ion-button>
@@ -96,7 +105,6 @@
         </ion-row>
       </ion-grid>
     </form>
-    
-
   </div>
+  <br><br><br>
 </ion-content>
