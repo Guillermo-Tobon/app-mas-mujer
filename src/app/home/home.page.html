@@ -12,19 +12,19 @@
     <div class="contTexto">
       <h4>Diligencie el siguiente formulario, son necesarios para tener un registro de sus datos.</h4>
     </div>
-    <form action="" >
+    <form [formGroup]="formRegistro" (ngSubmit)="GuardarDataForm()" >
       <ion-grid>
         <ion-row>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Nombre</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput></ion-input>
+              <ion-input formControlName="nombre" inputmode="text" autocapitalize required clearInput></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Tipo de identificación</ion-label>
-              <ion-select autocapitalize required clearInput>
+              <ion-select value="1" autocapitalize required clearInput>
                 <ion-select-option value="1">Cédula de ciudadanía</ion-select-option>
                 <ion-select-option value="2">Tarjeta de identidad</ion-select-option>
                 <ion-select-option value="3">Tarjeta de extranjería</ion-select-option>
@@ -34,37 +34,37 @@
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Número identificación</ion-label>
-              <ion-input inputmode="number" autocapitalize required clearInput></ion-input>
+              <ion-input formControlName="numeroIdentifica" inputmode="number" autocapitalize required clearInput></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Dirección recidencia</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="direccion" inputmode="text" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Ciudad</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="ciudad" inputmode="text" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Departamento</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="departamento" inputmode="text" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Teléfono de contacto</ion-label>
-              <ion-input inputmode="number" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="telefono" inputmode="number" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">
             <ion-item>
               <ion-label position="floating">Correo electrónico</ion-label>
-              <ion-input  inputmode="email" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="correo" inputmode="email" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -77,38 +77,38 @@
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Nombre contacto 1</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="nombreContacto1" inputmode="text" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Teléfono 1</ion-label>
-              <ion-input inputmode="number" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="telefonoContacto1" inputmode="number" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Nombre contacto 2</ion-label>
-              <ion-input inputmode="text" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="nombreContacto2" inputmode="text" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Teléfono 2</ion-label>
-              <ion-input inputmode="number" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="telefonoContacto2" inputmode="number" autocapitalize required clearInput ></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contTexto contInput">
-            <ion-checkbox color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong><ion-badge color="secondary">Leer Aquí</ion-badge></strong></i> </span>
+            <ion-checkbox formControlName="terminos" color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong><ion-badge color="secondary">Leer Aquí</ion-badge></strong></i> </span>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="onClick()" class="btnAceptar">
+            <ion-button type="submit" class="btnAceptar" [disabled]="!formRegistro.valid" expand="block">
               <ion-icon slot="start" name="send-outline"></ion-icon>
               Guardar
             </ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="onClick()" class="btnCancelar">
+            <ion-button (click)="onClick()" class="btnCancelar" expand="block">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Cancelar
             </ion-button>
