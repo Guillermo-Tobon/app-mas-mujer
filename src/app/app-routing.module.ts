@@ -15,10 +15,14 @@ const routes: Routes = [
     path: 'inicio',
     loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
   },
-  {
-    path: 'tabs',
-    loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },
+  // {
+  //   path: 'tabs',
+  //   loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
+  // },
+  // {
+  //   path: 'panico',
+  //   loadChildren: () => import('./pages/panico/panico.module').then( m => m.PanicoPageModule)
+  // },
 ];
 
 @NgModule({

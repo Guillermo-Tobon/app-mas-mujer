@@ -6,7 +6,18 @@ import { TabsPage } from './tabs.page';
 const routes: Routes = [
   {
     path: '',
-    component: TabsPage
+    redirectTo: 'pages/inicio',
+    pathMatch: 'full'
+  },
+  {
+    path: '',
+    component: TabsPage,
+    children: [
+      {
+        path: 'panico',
+        loadChildren: () => import('../panico/panico.module').then( m => m.PanicoPageModule)
+      }
+    ]
   }
 ];
 
