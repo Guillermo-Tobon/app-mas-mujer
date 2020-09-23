@@ -1,18 +1,18 @@
 <ion-tabs>
   <ion-tab-bar slot="bottom">
 
-    <ion-tab-button tab="panico">
-      <ion-icon name="flash"></ion-icon>
+    <ion-tab-button tab="panico" mode="md">
+      <ion-icon name="radio-outline"></ion-icon>
       <ion-label>Pánico</ion-label>
     </ion-tab-button>
 
     <ion-tab-button tab="linea-rapida">
-      <ion-icon name="apps"></ion-icon>
+      <ion-icon name="call-outline"></ion-icon>
       <ion-label>Línea Rapida</ion-label>
     </ion-tab-button>
 
-    <ion-tab-button tab="home">
-      <ion-icon name="send"></ion-icon>
+    <ion-tab-button tab="home" (click)="navFormRegister()">
+      <ion-icon name="create-outline"></ion-icon>
       <ion-label>Actualiza Datos</ion-label>
     </ion-tab-button>
 
