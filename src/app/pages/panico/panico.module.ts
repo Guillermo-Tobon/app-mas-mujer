@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { PanicoPageRoutingModule } from './panico-routing.module';
 
 import { PanicoPage } from './panico.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PanicoPageRoutingModule
+    PanicoPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [PanicoPage]
 })

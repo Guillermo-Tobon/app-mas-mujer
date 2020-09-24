@@ -1,0 +1,19 @@
+.menuPrincipal{
+  ion-toolbar{
+    --background:none;
+    background-color: #f63880;
+  }
+  ion-img{
+    width: 170px;
+    margin: auto;
+  }
+  .listTwo ion-item{
+    --background:none;
+    background-color:#ca1be8;
+    color: white;
+  }
+  ion-item {
+    font-family: system-ui;
+    font-size: 19px;
+  }
+}

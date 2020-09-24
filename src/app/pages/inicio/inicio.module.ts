@@ -8,6 +8,7 @@ import { InicioPageRoutingModule } from './inicio-routing.module';
 
 import { InicioPage } from './inicio.page';
 import { TabsPageModule } from '../tabs/tabs.module';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
@@ -15,7 +16,7 @@ import { TabsPageModule } from '../tabs/tabs.module';
     FormsModule,
     IonicModule,
     InicioPageRoutingModule,
-    //TabsPageModule
+    ComponentsModule
   ],
   declarations: [InicioPage]
 })

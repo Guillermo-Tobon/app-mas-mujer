@@ -1,3 +1,26 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu class="menuPrincipal" side="start" menuId="first" contentId="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-img src="../assets/img/mas-mujer.png"></ion-img>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list class="listOne">
+        <ion-item><ion-icon slot="start" name="speedometer-outline"></ion-icon> Inicio</ion-item>
+        <ion-item><ion-icon slot="start" name="radio-outline"></ion-icon> Botón de pánico</ion-item>
+        <ion-item><ion-icon slot="start" name="hand-left-outline"></ion-icon> Orientación</ion-item>
+        <ion-item><ion-icon slot="start" name="information-circle-outline"></ion-icon> Información</ion-item>
+        <ion-item><ion-icon slot="start" name="warning-outline"></ion-icon> Líneas de emergencia</ion-item>
+      </ion-list>
+      <ion-list class="listTwo">
+        <ion-item><ion-icon slot="start" name="body-outline"></ion-icon> Conócenos</ion-item>
+        <ion-item><ion-icon slot="start" name="analytics-outline"></ion-icon> Datos de interés</ion-item>
+        <ion-item><ion-icon slot="start" name="cloud-upload-outline"></ion-icon> Actualiza tus datos</ion-item>
+      </ion-list>
+      
+    </ion-content>
+  </ion-menu>
+
+  <ion-router-outlet id="main"></ion-router-outlet>
 </ion-app>
