@@ -1,36 +1,26 @@
-#container {
+
+.contGrid{
   text-align: center;
-  padding: 30px 20px;
-  .contLogo{
-    width: 170px;
-    margin: auto;
-  }
-  h1{
-    font-family: system-ui;
-  }
-  .contGrid{
-    text-align: center;
-    ion-col{
-      border: 2px solid #f63880;
-      border-radius: 30px;
-      padding: 10px 15px;
-      max-width: 47% !important;
-      margin: 40px 3px;
-      background-color: #f63880;
-      
-      ion-img{
-        width: 115px;
-        margin: auto;
-      }
-      h2{
-        font-size: 17px;
-        font-weight: 600;
-        font-family: system-ui;
-      }
+  ion-col{
+    border: 2px solid #f63880;
+    border-radius: 30px;
+    padding: 10px 15px;
+    max-width: 47% !important;
+    margin: 40px 3px;
+    background-color: #f63880;
+    
+    ion-img{
+      width: 115px;
+      margin: auto;
     }
-    ion-col:hover{
-      background-color: white;
-      box-shadow:1px 5px 10px -2px #f63880;
+    h2{
+      font-size: 17px;
+      font-weight: 600;
+      font-family: system-ui;
     }
+  }
+  ion-col:hover{
+    background-color: white;
+    box-shadow:1px 5px 10px -2px #f63880;
   }
 }

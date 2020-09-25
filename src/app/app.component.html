@@ -6,18 +6,20 @@
       </ion-toolbar>
     </ion-header>
     <ion-content>
-      <ion-list class="listOne">
-        <ion-item><ion-icon slot="start" name="speedometer-outline"></ion-icon> Inicio</ion-item>
-        <ion-item><ion-icon slot="start" name="radio-outline"></ion-icon> Botón de pánico</ion-item>
-        <ion-item><ion-icon slot="start" name="hand-left-outline"></ion-icon> Orientación</ion-item>
-        <ion-item><ion-icon slot="start" name="information-circle-outline"></ion-icon> Información</ion-item>
-        <ion-item><ion-icon slot="start" name="warning-outline"></ion-icon> Líneas de emergencia</ion-item>
-      </ion-list>
-      <ion-list class="listTwo">
-        <ion-item><ion-icon slot="start" name="body-outline"></ion-icon> Conócenos</ion-item>
-        <ion-item><ion-icon slot="start" name="analytics-outline"></ion-icon> Datos de interés</ion-item>
-        <ion-item><ion-icon slot="start" name="cloud-upload-outline"></ion-icon> Actualiza tus datos</ion-item>
-      </ion-list>
+      <ion-menu-toggle>
+        <ion-list class="listOne">
+          <ion-item (click)="navInicio()"><ion-icon slot="start" name="speedometer-outline"></ion-icon> Inicio</ion-item>
+          <ion-item (click)="navPanico()"><ion-icon slot="start" name="radio-outline"></ion-icon> Botón de pánico</ion-item>
+          <ion-item (click)="navOrientacion()"><ion-icon slot="start" name="hand-left-outline"></ion-icon> Orientación</ion-item>
+          <ion-item (click)="navInformacion()"><ion-icon slot="start" name="information-circle-outline"></ion-icon> Información</ion-item>
+          <ion-item (click)="navLineasEmergencia()"><ion-icon slot="start" name="warning-outline"></ion-icon> Líneas de emergencia</ion-item>
+        </ion-list>
+        <ion-list class="listTwo">
+          <ion-item><ion-icon slot="start" name="body-outline"></ion-icon> Conócenos</ion-item>
+          <ion-item><ion-icon slot="start" name="analytics-outline"></ion-icon> Datos de interés</ion-item>
+          <ion-item (click)="navFormRegister()"><ion-icon slot="start" name="cloud-upload-outline"></ion-icon> Actualiza tus datos</ion-item>
+        </ion-list>
+      </ion-menu-toggle>
       
     </ion-content>
   </ion-menu>

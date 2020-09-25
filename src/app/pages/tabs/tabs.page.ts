@@ -18,7 +18,7 @@ export class TabsPage implements OnInit {
    * Método para navegar al formulario de registro
    */
   public navFormRegister(){
-    this.router.navigateByUrl('/home');
+    this.router.navigate(['/home']);
   }
 
 }

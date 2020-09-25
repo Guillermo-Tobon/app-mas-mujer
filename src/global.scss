@@ -39,3 +39,15 @@
     }
   }
 }
+
+#container {
+  text-align: center;
+  padding: 30px 20px;
+  .contLogo{
+    width: 150px;
+    margin: auto;
+  }
+  h1{
+    font-family: system-ui;
+  }
+}

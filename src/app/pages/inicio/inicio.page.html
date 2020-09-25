@@ -2,19 +2,17 @@
 
 <ion-content>
   <div id="container">
-    <div class="contLogo">
-      <ion-img src="../../assets/img/mas-mujer.png"></ion-img>
-    </div>
+    <app-logo></app-logo>
     <div>
       <h1>¿Que necesitas?</h1>
     </div>
     <ion-grid class="contGrid" fixed>
       <ion-row>
-        <ion-col size="6">
+        <ion-col size="6" (click)="navOrientacion()">
           <ion-img src="/assets/img/orientacion.png"></ion-img>
           <h2>Orientación</h2>
         </ion-col>
-        <ion-col size="6">
+        <ion-col size="6" (click)="navInformacion()">
           <ion-img src="/assets/img/informacion.png"></ion-img>
           <h2>Información</h2>
         </ion-col>

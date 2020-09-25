@@ -15,6 +15,18 @@ const routes: Routes = [
       {
         path: 'panico',
         loadChildren: () => import('../panico/panico.module').then( m => m.PanicoPageModule)
+      },
+      {
+        path: 'orientacion',
+        loadChildren: () => import('../orientacion/orientacion.module').then( m => m.OrientacionPageModule)
+      },
+      {
+        path: 'informacion',
+        loadChildren: () => import('../informacion/informacion.module').then( m => m.InformacionPageModule)
+      },
+      {
+        path: 'lineas-emergencia',
+        loadChildren: () => import('../lineas-emergencia/lineas-emergencia.module').then( m => m.LineasEmergenciaPageModule)
       }
     ]
   },
