@@ -5,4 +5,35 @@
     <app-logo></app-logo>
   </div>
 
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <p>Utilice las líneas de llamada rápida directamente!</p>
+      </ion-col>
+      <ion-col size="12">
+        
+        <ion-chip outline (click)="HacerllamadaDirecta(155)">
+          <ion-icon name="call-outline" color="primary"></ion-icon>
+          <ion-label>Violencia de género</ion-label>
+        </ion-chip>
+
+        <ion-chip outline (click)="HacerllamadaDirecta(123)">
+          <ion-icon name="call-outline" color="primary"></ion-icon>
+          <ion-label>Policia</ion-label>
+        </ion-chip>
+
+        <ion-chip outline (click)="HacerllamadaDirecta(122)">
+          <ion-icon name="call-outline" color="primary"></ion-icon>
+          <ion-label>Fiscalía</ion-label>
+        </ion-chip>
+
+        <ion-chip outline (click)="HacerllamadaDirecta(141)">
+          <ion-icon name="call-outline" color="primary"></ion-icon>
+          <ion-label>ICBF</ion-label>
+        </ion-chip>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

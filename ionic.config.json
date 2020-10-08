@@ -1,7 +1,8 @@
 {
   "name": "mas-mujer",
   "integrations": {
-    "capacitor": {}
+    "capacitor": {},
+    "cordova": {}
   },
   "type": "angular"
 }

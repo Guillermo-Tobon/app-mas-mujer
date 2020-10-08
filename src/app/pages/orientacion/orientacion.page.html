@@ -7,24 +7,112 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="12">
-        <form  (ngSubmit)="ConsultarOrientacion()"> 
+      <ion-col size="12" class="col-orientacion">
 
-          <h2>¿Que tipo de violencia sufres?</h2>
-          <ion-item>
-            <ion-checkbox color="secondary"></ion-checkbox>
-            <ion-label>Awesome Label</ion-label>
-          </ion-item>
-          <ion-item>
-            <ion-label>Yes</ion-label>
-            <ion-checkbox color="primary"  ></ion-checkbox>
-          </ion-item>
-      
-          <ion-item>
-            <ion-label>No</ion-label>
-            <ion-checkbox color="primary" ></ion-checkbox>
-          </ion-item>
-        </form>
+          <ion-list>
+            <ion-radio-group [(ngModel)]="violencia">
+              <ion-list-header>
+                <ion-label>
+                  ¿Que tipo de violencia sufres?
+                </ion-label>
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label>Física</ion-label>
+                <ion-radio slot="start" color="secondary" value="fisica"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Verbal</ion-label>
+                <ion-radio slot="start" color="secondary" value="verbal"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Psicológica</ion-label>
+                <ion-radio slot="start" color="secondary" value="psicologica"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Sexual</ion-label>
+                <ion-radio slot="start" color="secondary" value="sexual"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Económica</ion-label>
+                <ion-radio slot="start" color="secondary" value="economica"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Acoso</ion-label>
+                <ion-radio slot="start" color="secondary" value="acoso"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+
+          <ion-list>
+            <ion-radio-group [(ngModel)]="agresor">
+              <ion-list-header>
+                <ion-label>
+                  ¿Quien es tu agresor?
+                </ion-label>
+              </ion-list-header>
+          
+              <ion-item>
+                <ion-label>Esposo/a o pareja permanente</ion-label>
+                <ion-radio slot="start" color="secondary" value="pareja"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Ex esposo/a o ex pareja pernamente</ion-label>
+                <ion-radio slot="start" color="secondary" value="expareja"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Novio/a</ion-label>
+                <ion-radio slot="start" color="secondary" value="novio-a"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Ex novio/a</ion-label>
+                <ion-radio slot="start" color="secondary" value="exnovio-a"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Padres</ion-label>
+                <ion-radio slot="start" color="secondary" value="padres"></ion-radio>
+              </ion-item>
+          
+              <ion-item>
+                <ion-label>Hermano/a</ion-label>
+                <ion-radio slot="start" color="secondary" value="hermano-a"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Otro familiar</ion-label>
+                <ion-radio slot="start" color="secondary" value="otro-familiar"></ion-radio>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Otro </ion-label>
+                <ion-radio slot="start" color="secondary" value="otro"></ion-radio>
+              </ion-item>
+            </ion-radio-group>
+          </ion-list>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="6">
+        <ion-button type="button" class="btnAceptar" expand="block" (click)="ObtenerOrientacion()">
+          <ion-icon slot="start" name="send-outline"></ion-icon>
+          Orientar
+        </ion-button>
+      </ion-col>
+      <ion-col size="6">
+        <ion-button (click)="onClick()" class="btnCancelar" expand="block">
+          <ion-icon slot="start" name="trash-outline"></ion-icon>
+          Cancelar
+        </ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
