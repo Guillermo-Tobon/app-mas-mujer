@@ -1,104 +1,25 @@
-<app-header titulo="Formulario de registro"></app-header>
 
 <ion-content>
   <div id="container">
-    <div class="contLogo">
-      <strong>+ Mujer</strong>
-    </div>
+    <h1>Validación de usuario</h1>
+    <app-logo></app-logo>
     <div class="contTexto">
-      <h4>Diligencie el siguiente formulario, son necesarios para tener un registro de sus datos.</h4>
+      <h4>Hola!! Queremos ofrecerte una excelente asesoría, para ello necesitamos validar tu número de identificación para que cuentes con una sistencia completa. Gracias y bienvenida!!</h4>
     </div>
-    <form [formGroup]="formRegistro" (ngSubmit)="GuardarDataForm()" >
+    <form [formGroup]="formValidarUser" (ngSubmit)="ValidarUsuario()" >
       <ion-grid>
         <ion-row>
           <ion-col size="12" class="contInput">
             <ion-item>
-              <ion-label position="floating">Nombre</ion-label>
-              <ion-input formControlName="nombre" inputmode="text" autocapitalize required clearInput></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Tipo de identificación</ion-label>
-              <ion-select value="1" autocapitalize required clearInput>
-                <ion-select-option value="1">Cédula de ciudadanía</ion-select-option>
-                <ion-select-option value="2">Tarjeta de identidad</ion-select-option>
-                <ion-select-option value="3">Tarjeta de extranjería</ion-select-option>
-              </ion-select>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
               <ion-label position="floating">Número identificación</ion-label>
-              <ion-input formControlName="numeroIdentifica" inputmode="number" autocapitalize required clearInput></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Dirección recidencia</ion-label>
-              <ion-input formControlName="direccion" inputmode="text" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Ciudad</ion-label>
-              <ion-input formControlName="ciudad" inputmode="text" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Departamento</ion-label>
-              <ion-input formControlName="departamento" inputmode="text" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Teléfono de contacto</ion-label>
-              <ion-input formControlName="telefono" inputmode="number" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Correo electrónico</ion-label>
-              <ion-input formControlName="correo" inputmode="email" autocapitalize required clearInput ></ion-input>
+              <ion-input formControlName="numeroIdentifica" inputmode="number" type="number" autocapitalize required clearInput></ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
-      </ion-grid>
-      <ion-grid fixed>
+
         <ion-row>
-          <ion-col size="12" class="contTexto">
-            <p>Los siguientes datos son requeridos para ser utilizados en caso de emergencia y poder ser contactados por medio del botón de pánico. </p>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Nombre contacto 1</ion-label>
-              <ion-input formControlName="nombreContacto1" inputmode="text" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Teléfono 1</ion-label>
-              <ion-input formControlName="telefonoContacto1" inputmode="number" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Nombre contacto 2</ion-label>
-              <ion-input formControlName="nombreContacto2" inputmode="text" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="6" class="contInput">
-            <ion-item>
-              <ion-label position="floating">Teléfono 2</ion-label>
-              <ion-input formControlName="telefonoContacto2" inputmode="number" autocapitalize required clearInput ></ion-input>
-            </ion-item>
-          </ion-col>
-          <ion-col size="12" class="contTexto contInput">
-            <ion-checkbox formControlName="terminos" color="primary"></ion-checkbox><span>Acepto términos y condiciones, derechos de uso de datos personales <i><strong><ion-badge color="secondary">Leer Aquí</ion-badge></strong></i> </span>
-          </ion-col>
           <ion-col size="6">
-            <ion-button type="submit" class="btnAceptar" [disabled]="!formRegistro.valid" expand="block">
+            <ion-button type="submit" class="btnAceptar" [disabled]="!formValidarUser.valid" expand="block">
               <ion-icon slot="start" name="send-outline"></ion-icon>
               Guardar
             </ion-button>
@@ -113,5 +34,10 @@
       </ion-grid>
     </form>
   </div>
-  <br><br><br>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title>©2020 + Mujer<br>Todos los derechos reservados.</ion-title>
+  </ion-toolbar>
+</ion-footer>

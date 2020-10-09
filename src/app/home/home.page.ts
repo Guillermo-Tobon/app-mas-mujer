@@ -10,25 +10,14 @@ import { AlertController } from '@ionic/angular';
 export class HomePage implements OnInit {
 
   public exprNum:string = "/^[0-9]$/";
-  public formRegistro: FormGroup;
+  public formValidarUser: FormGroup;
 
   constructor(
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController
   ) {
-    this.formRegistro = this.formBuilder.group({
-      nombre: ['', Validators.required],
-      numeroIdentifica: ['', [Validators.required, Validators.minLength(6)]],
-      direccion: ['', Validators.required],
-      ciudad: ['',Validators.required],
-      departamento: ['',Validators.required],
-      telefono: ['', [Validators.required, Validators.minLength(10)]],
-      correo: ['', [Validators.required, Validators.email]],
-      nombreContacto1: ['', Validators.required],
-      telefonoContacto1: ['', [Validators.required, Validators.minLength(10)]],
-      nombreContacto2: ['', Validators.required],
-      telefonoContacto2: ['', [Validators.required, Validators.minLength(10)]],
-      terminos: ['false',Validators.required]
+    this.formValidarUser = this.formBuilder.group({
+      numeroIdentifica: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
@@ -40,12 +29,12 @@ export class HomePage implements OnInit {
   /**
    * Método para guardar la data del formulario de registro
    */
-  public GuardarDataForm(){
-    if (this.formRegistro.value.terminos === "false") {
-      this.alertTerminos();
+  public ValidarUsuario(){
+    if (this.formValidarUser.value.numeroIdentifica === "") {
+      this.alertUserValida();
 
     } else {
-      console.log(this.formRegistro.value);
+      console.log(this.formValidarUser.value);
 
     }
   }
@@ -66,7 +55,7 @@ export class HomePage implements OnInit {
   /**
    * Método alert async para validar los datos del form
    */
-  async alertTerminos(){
+  async alertUserValida(){
     const alert = await this.alertCtrl.create({
       header: 'Advertencia',
       subHeader: 'Falta términos y condiciones',

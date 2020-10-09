@@ -14,9 +14,6 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  },  {
-    path: 'resultado-orientacion',
-    loadChildren: () => import('./pages/resultado-orientacion/resultado-orientacion.module').then( m => m.ResultadoOrientacionPageModule)
   }
 
 

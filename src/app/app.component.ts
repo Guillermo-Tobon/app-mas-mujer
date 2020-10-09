@@ -71,10 +71,18 @@ export class AppComponent {
 
 
   /**
+   * Método que navega a Conócenos
+   */
+  public navConocenos(){
+    this.router.navigate(['tabs','conocenos']);
+  }
+
+
+  /**
    * Método que navega a Formulario registro
    */
   public navFormRegister(){
-    this.router.navigate(['home']);
+    this.router.navigate(['tabs','formulario-registro']);
   }
 
 

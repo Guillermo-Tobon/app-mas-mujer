@@ -27,6 +27,18 @@ const routes: Routes = [
       {
         path: 'lineas-emergencia',
         loadChildren: () => import('../lineas-emergencia/lineas-emergencia.module').then( m => m.LineasEmergenciaPageModule)
+      },
+      {
+        path: 'resultado-orientacion',
+        loadChildren: () => import('../resultado-orientacion/resultado-orientacion.module').then( m => m.ResultadoOrientacionPageModule)
+      },
+      {
+        path: 'formulario-registro',
+        loadChildren: () => import('../formulario-registro/formulario-registro.module').then( m => m.FormularioRegistroPageModule)
+      },
+      {
+        path: 'conocenos',
+        loadChildren: () => import('../conocenos/conocenos.module').then( m => m.ConocenosPageModule)
       }
     ]
   },
