@@ -2,4 +2,23 @@
 
 <ion-content>
 
+  <ion-slides pager="true">
+
+    <ion-slide class="slide" *ngFor="let info of infoData; let i = index;">
+      <ion-card>
+        <ion-img [src]="info.imagen"></ion-img>
+        <ion-card-header>
+          <ion-card-subtitle>{{info.tag}}</ion-card-subtitle>
+          <ion-card-title>{{info.titulo}}</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>{{info.contenido}}</ion-card-content>
+        <ion-item>
+          <span><i><small slot="start">{{info.fechaPublicacion}}</small></i></span>
+          <ion-button class="btnVerCompleto" fill="outline" slot="end" (click)="VerArticuloCompleto(info.urlArticulo)">Ver completo</ion-button>
+        </ion-item>
+      </ion-card>
+    </ion-slide>
+
+  </ion-slides>
+
 </ion-content>

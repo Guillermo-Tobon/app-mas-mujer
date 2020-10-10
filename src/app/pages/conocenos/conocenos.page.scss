@@ -1,0 +1,29 @@
+ion-slides{
+  height: 100%;
+  --bullet-background-active: #f63880;
+  ion-slide{
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    padding: 15px;
+  }
+  .slide-1{
+    --background: none;
+    background-color: #9fbf28;
+  }
+  .slide-2{
+    --background: none;
+    background-color:#e23683;
+  }
+  ion-card{
+    box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px;
+    --background: none;
+    background-color: transparent;
+    font-family: system-ui;
+    color: white;
+    font-size: 20px;
+    p{
+      font-family: sans-serif;
+      line-height: 26px;
+    }
+  }
+}

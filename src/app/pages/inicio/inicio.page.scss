@@ -2,13 +2,29 @@
 .contGrid{
   text-align: center;
   ion-col{
-    border: 2px solid #f63880;
-    border-radius: 30px;
     padding: 10px 15px;
     max-width: 47% !important;
     margin: 40px 3px;
     background-color: #f63880;
-    
+    border-top-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    border: 0;
+    position: relative;
+    p{
+      position: absolute;
+      bottom: -86px;
+      left: -5px;
+      width: 136px;
+      height: 89px;
+      overflow: hidden;
+      background-color: white;
+      color: #8c8c8c;
+      border-top-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      padding: 18px 11px;
+      font-size: 12px;
+      box-shadow: 2px 2px 2px 2px;
+    }
     ion-img{
       width: 115px;
       margin: auto;
@@ -22,5 +38,10 @@
   ion-col:hover{
     background-color: white;
     box-shadow:1px 5px 10px -2px #f63880;
+  }
+  ion-col:hover p{
+    background-color:#f63880;
+    box-shadow:1px 5px 10px -2px #f63880;
+    color: white;
   }
 }
