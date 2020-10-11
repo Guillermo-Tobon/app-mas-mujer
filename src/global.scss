@@ -49,6 +49,8 @@
   }
   h1{
     font-family: system-ui;
+    font-size: 18px;
+    color: #8c8c8c;
   }
 }
 
@@ -76,4 +78,9 @@ ion-footer{
     font-size: 12px;
     color: #8c8c8c;
   }
+}
+
+.tab-selected{
+  --background: none;
+  background-color: #48b1ff  !important;
 }

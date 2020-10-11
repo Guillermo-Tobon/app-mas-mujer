@@ -12,6 +12,7 @@ import { FormControl, FormsModule } from '@angular/forms';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
+import { SMS } from '@ionic-native/sms/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -28,6 +29,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     SplashScreen,
     CallNumber,
     InAppBrowser,
+    SMS,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
