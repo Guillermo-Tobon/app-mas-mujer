@@ -1,6 +1,10 @@
 <app-header titulo="Pánico"></app-header>
 
 <ion-content>
+  <ion-refresher slot="fixed" (ionRefresh)="CargandoPanico( $event )">
+    <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Deslice para actualizar" refreshingSpinner="circles" refreshingText="Cargando...">
+    </ion-refresher-content>
+  </ion-refresher>
   <div id="container">
     <app-logo></app-logo>
     <div>

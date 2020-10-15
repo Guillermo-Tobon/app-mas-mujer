@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SMS } from '@ionic-native/sms/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-panico',
@@ -11,13 +12,22 @@ export class PanicoPage implements OnInit {
 
   constructor(
                 private alertCtrl: AlertController,
-                private loadingCtrl: LoadingController,
+                private loadService: LoadingService,
                 private sms:SMS
     ) { }
 
   ngOnInit() {
-    this.LoadingEnviandoMensajes();
     this.enviaSmsEmergencia();
+  }
+
+  
+  /**
+   * Método para recargar la página de pánico
+   * @param event -> Data del evento refresh
+   */
+  public CargandoPanico( event:any ){
+    this.enviaSmsEmergencia();
+    event.target.complete();
   }
 
 
@@ -25,25 +35,16 @@ export class PanicoPage implements OnInit {
    * Método que envía los mensajes de emergencia
    */
   public enviaSmsEmergencia(){
-    this.sms.send('3165347875', 'Hola necesito ayuda!!')
-  }
+    this.loadService.loadingPresent('Estamos enviando un mensaje de texto a los contactos de emergencia...');
+    
+    this.sms.send('3165347875', 'Hola necesito ayuda!!').then( resp =>{
+      console.log( resp );
+    }).catch( err =>{
+      console.log("ERROR -> ", err );
+    })
 
+    this.loadService.loadingDismiss();
 
-
-
-  /**
-   * Método loading para preparar los mensajes a enviar
-   */
-  public async LoadingEnviandoMensajes(){
-    const loading = await this.loadingCtrl.create({
-      spinner: 'bubbles',
-      duration: 5000,
-      message: 'Estamos notificando vía Mensaje de texto a los contactos de emergencia que tienes como referencia... ',
-      translucent: true,
-      cssClass: 'custom-class custom-loading',
-      backdropDismiss: false
-    });
-    await loading.present();
   }
 
 
@@ -60,5 +61,9 @@ export class PanicoPage implements OnInit {
     })
     await alert.present();
   }
+
+
+
+
 
 }
