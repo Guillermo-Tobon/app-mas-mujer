@@ -35,15 +35,21 @@ export class PanicoPage implements OnInit {
    * Método que envía los mensajes de emergencia
    */
   public enviaSmsEmergencia(){
-    this.loadService.loadingPresent('Estamos enviando un mensaje de texto a los contactos de emergencia...');
-    
-    this.sms.send('3165347875', 'Hola necesito ayuda!!').then( resp =>{
+    this.loadService.showLoading('Estamos enviando un mensaje de texto a los contactos de emergencia...');
+    const options = {
+      replaceLineBreaks: false,
+      android: {
+        intent: 'INTENT'
+      }
+    }
+
+    this.sms.send( '3165509981', 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
       console.log( resp );
     }).catch( err =>{
       console.log("ERROR -> ", err );
     })
 
-    this.loadService.loadingDismiss();
+    this.loadService.hideLoading();
 
   }
 

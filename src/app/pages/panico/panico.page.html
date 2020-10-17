@@ -12,6 +12,28 @@
     </div>
   </div>
 
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12" class="contBtnPanico">
+        <p>Deslice hacia la izquierda para ver las opciones.</p>
+        <ion-list>
+          <ion-item-sliding>
+            <ion-item>
+              <ion-label>Contacto de emergencia 1<br>
+                <p>3124567878</p>
+              </ion-label>
+              <ion-icon slot="end" name="arrow-back-circle-outline"></ion-icon>
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option color="secondary" (click)="EnviaMensajeTexto(item)"><ion-icon name="mail-outline"></ion-icon></ion-item-option>
+              <ion-item-option color="success" (click)="RealizaLlamada(item)"><ion-icon name="phone-portrait-outline"></ion-icon></ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
   <ion-grid fixed >
     <ion-row>
       <ion-col size="12" class="contBtnPanico">

@@ -4,6 +4,13 @@
     width: 100%;
     height: 200px;
     overflow: hidden;
+    ion-item-sliding{
+      ion-item-options{
+        ion-icon{
+          font-size: 30px !important;
+        }
+      }
+    }
     ion-img{
       width: 180px;
       margin: auto;

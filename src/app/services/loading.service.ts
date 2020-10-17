@@ -12,20 +12,15 @@ export class LoadingService {
 
 
 
-  public async loadingPresent( message:string ){
+  public showLoading = async(message?: string) =>{
     this.isLoading = true;
-
-    return await this.loadingCtrl.create({
-      spinner: 'bubbles',
-      message,
-      translucent: true,
-      backdropDismiss: false
-    }).then( a =>{
-      a.present().then(() =>{
-        console.log('loading presented');
-
+    this.loadingCtrl.create({
+      message: message ? message : 'Procesando datos...',
+      spinner: 'bubbles'
+    }).then( loader =>{
+      loader.present().then( () =>{
         if(!this.isLoading){
-          a.dismiss().then(() => console.log('abort laoding'));
+          loader.dismiss();
         }
       })
     })
@@ -33,10 +28,13 @@ export class LoadingService {
 
 
 
-  public async loadingDismiss(){
+  public hideLoading = async() =>{
     this.isLoading = false;
-
-    return await this.loadingCtrl.dismiss().then(() => console.log('loading dismissed'));
+    this.loadingCtrl.getTop().then( loader =>{
+      if (loader) {
+        loader.dismiss();
+      }
+    })
   }
 
 
