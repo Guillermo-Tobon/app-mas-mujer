@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -13,6 +14,7 @@ export class PanicoPage implements OnInit {
   constructor(
                 private alertCtrl: AlertController,
                 private loadService: LoadingService,
+                private callNumber: CallNumber,
                 private sms:SMS
     ) { }
 
@@ -43,7 +45,7 @@ export class PanicoPage implements OnInit {
       }
     }
 
-    this.sms.send( '3165509981', 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
+    this.sms.send( '3196834539', 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
       console.log( resp );
     }).catch( err =>{
       console.log("ERROR -> ", err );
@@ -53,6 +55,42 @@ export class PanicoPage implements OnInit {
 
   }
 
+
+  /**
+   * Método que envía mensaje de emergencia
+   * @param number -> Número telefónico
+   */
+  public EnviaMensajeTexto(number:any){
+    this.loadService.showLoading('Estamos procesando el mensaje de emergencia...');
+    const options = {
+      replaceLineBreaks: false,
+      android: {
+        intent: 'INTENT'
+      }
+    }
+    this.sms.send( number, 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
+      console.log( resp );
+    }).catch( err =>{
+      console.log("ERROR -> ", err );
+    })
+
+    this.loadService.hideLoading();
+  }
+
+
+  /**
+   * Método para realizar llamadas directamente
+   * @param number -> Número telefónico
+   */
+  public RealizaLlamada(number:any){
+    this.callNumber.callNumber(number, true).then( resp => {
+      console.log( resp );
+
+    }).catch( err =>{
+      console.log( err );
+
+    });
+  }
 
 
 

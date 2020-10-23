@@ -77,6 +77,13 @@ export class AppComponent {
     this.router.navigate(['tabs','conocenos']);
   }
 
+  /**
+   * Método para navegar a Violentómetro
+   */
+  public navViolentrometro(){
+    this.router.navigate(['tabs','violentometro']);
+  }
+
 
   /**
    * Método que navega a Formulario registro

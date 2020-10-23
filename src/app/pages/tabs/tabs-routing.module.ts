@@ -39,6 +39,10 @@ const routes: Routes = [
       {
         path: 'conocenos',
         loadChildren: () => import('../conocenos/conocenos.module').then( m => m.ConocenosPageModule)
+      },
+      {
+        path: 'violentometro',
+        loadChildren: () => import('../violentometro/violentometro.module').then( m => m.ViolentometroPageModule)
       }
     ]
   },

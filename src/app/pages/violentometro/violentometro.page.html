@@ -1,0 +1,26 @@
+<app-header titulo="Violentometro"></app-header>
+
+<ion-content>
+  <ion-slides mode="ios" pager="true">
+    <ion-slide>
+      <ion-img src="../../assets/img/violen1.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="../../assets/img/violen2.jpg"></ion-img>
+    </ion-slide>
+    <ion-slide>
+      <ion-img src="../../assets/img/violen3.jpg"></ion-img>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <ion-button (click)="NavegarExt('https://profamilia.org.co/aprende/violencia-de-genero/violentometro/')" class="btnCancelar" expand="full">
+          <ion-icon slot="start" name="compass-outline"></ion-icon>
+          Conoce más sobre Violentómetro
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
