@@ -85,6 +85,13 @@ export class AppComponent {
   public navViolentrometro(){
     this.router.navigate(['tabs','violentometro']);
   }
+  
+  /**
+   * Método para navegar al manual de uso
+   */
+  public navManualUso = () =>{
+    this.router.navigate(['tabs','manual-uso']);
+  }
 
 
   /**

@@ -40,6 +40,12 @@ export class TabsPage implements OnInit {
           handler: () => {
             this.HacerllamadaDirecta(123);
           }
+        },{
+          text: 'Gaula',
+          icon: 'call-outline',
+          handler: () => {
+            this.HacerllamadaDirecta(147);
+          }
         }, {
           text: 'Fiscalia',
           icon: 'call-outline',
@@ -71,11 +77,7 @@ export class TabsPage implements OnInit {
    */
   public HacerllamadaDirecta(number:any){
     this.callNumber.callNumber(number, true).then( resp => {
-      console.log( resp );
-
     }).catch( err =>{
-      console.log( err );
-
     });
   }
 

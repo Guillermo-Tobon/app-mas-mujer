@@ -1,6 +1,8 @@
 <app-header titulo="Datos de usuario"></app-header>
 
 <ion-content>
+  <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
+
   <div id="container">
     <app-logo></app-logo>
     <div class="contTexto">
@@ -18,7 +20,7 @@
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Tipo de identificación</ion-label>
-              <ion-select value="Cédula de ciudadanía" formControlName="tipo_identifica_us"  autocapitalize required clearInput>
+              <ion-select value="Cédula de ciudadanía" formControlName="tipo_identifica_us"  autocapitalize required clearInput disabled>
                 <ion-select-option value="Cédula de ciudadanía">Cédula de ciudadanía</ion-select-option>
                 <ion-select-option value="Tarjeta de extranjería">Tarjeta de extranjería</ion-select-option>
                 <ion-select-option value="Cédula de extranjería">Cédula de extranjería</ion-select-option>
@@ -30,7 +32,7 @@
           <ion-col size="6" class="contInput">
             <ion-item>
               <ion-label position="floating">Número identificación</ion-label>
-              <ion-input formControlName="num_identifica_us" inputmode="number" autocapitalize required clearInput></ion-input>
+              <ion-input formControlName="num_identifica_us" inputmode="number" disabled autocapitalize required clearInput></ion-input>
             </ion-item>
           </ion-col>
           <ion-col size="12" class="contInput">

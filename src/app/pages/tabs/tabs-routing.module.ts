@@ -43,7 +43,12 @@ const routes: Routes = [
       {
         path: 'violentometro',
         loadChildren: () => import('../violentometro/violentometro.module').then( m => m.ViolentometroPageModule)
+      },
+      {
+        path: 'manual-uso',
+        loadChildren: () => import('../manual-uso/manual-uso.module').then( m => m.ManualUsoPageModule)
       }
+    
     ]
   },
   {

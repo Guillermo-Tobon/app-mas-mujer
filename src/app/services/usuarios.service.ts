@@ -71,5 +71,32 @@ export class UsuariosService {
   }
 
 
+  /**
+   * Método para actualizar en BD la info del usuario
+   * @param info -> Objeto con la info del usuario a actualizar
+   */
+  public updateUserById = (info:{}) =>{
+    let json = {
+      numIdentifica: info['num_identifica_us'],
+      tipoIdentifica: info['tipo_identifica_us'],
+      nombre: info['nombre_us'],
+      direccion: info['direccion_us'],
+      ciudad: info['ciudad_us'],
+      departamento: info['departamento_us'],
+      telefono: info['telefono_us'],
+      correo: info['correo_us'],
+      nomContacUno: info['nom_contacto_uno_us'],
+      telContacUno: info['tel_contacto_uno_us'],
+      nomContacDos: info['nom_contacto_dos_us'],
+      telContacDos: info['tel_contacto_dos_us'],
+      estado: 1
+    }
+
+    return this.http.post(`${environment.URL_API}/actualizarUsuario`, json, this.httpOptions).pipe(
+      map( data => data )
+    ).toPromise();
+  }
+
+
 
 }

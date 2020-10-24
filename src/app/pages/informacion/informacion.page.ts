@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
 import { InformacionService } from 'src/app/services/informacion.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
@@ -15,7 +14,6 @@ export class InformacionPage implements OnInit {
 
   constructor( 
                 private infoServices: InformacionService,
-                private loadingCtrl: LoadingController,
                 private iab: InAppBrowser  ) { }
 
   ngOnInit() {
@@ -33,7 +31,6 @@ export class InformacionPage implements OnInit {
   public getInfoData(){
     this.infoServices.getInformacionService().subscribe( data =>{
       this.infoData = data;
-      console.log(this.infoData);
     })
   }
 

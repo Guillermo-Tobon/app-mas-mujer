@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
@@ -12,39 +12,46 @@ import { UsuariosService } from 'src/app/services/usuarios.service';
 })
 export class FormularioRegistroPage implements OnInit {
 
-  public estadoUser:any;
   public exprNum:string = "/^[0-9]$/";
   public formRegistro: FormGroup;
+  public dataUser:[];
 
   constructor(
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
+              public toastController: ToastController,
               private usuarioSrv: UsuariosService,
               private loadingSrv: LoadingService,
               private router: Router
     ) {
-      this.formRegistro = this.formBuilder.group({
-        nombre_us: ['', Validators.required],
-        num_identifica_us: ['', [Validators.required, Validators.minLength(6)]],
-        tipo_identifica_us: ['Cédula de ciudadanía', [Validators.required]],
-        direccion_us: ['', Validators.required],
-        ciudad_us: ['',Validators.required],
-        departamento_us: ['',Validators.required],
-        telefono_us: ['', [Validators.required, Validators.minLength(10)]],
-        correo_us: ['', [Validators.required, Validators.email]],
-        nom_contacto_uno_us: ['', Validators.required],
-        tel_contacto_uno_us: ['', [Validators.required, Validators.minLength(10)]],
-        nom_contacto_dos_us: ['', Validators.required],
-        tel_contacto_dos_us: ['', [Validators.required, Validators.minLength(10)]],
-        terminos: ['false',Validators.required]
-      })
     }
 
   ngOnInit() {
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
 
-
+    this.formRegistro = this.formBuilder.group({
+      nombre_us: [this.dataUser['nombre_us'], Validators.required],
+      num_identifica_us: [this.dataUser['num_identifica_us'], [Validators.required, Validators.minLength(6)]],
+      tipo_identifica_us: ['Cédula de ciudadanía', [Validators.required]],
+      direccion_us: [this.dataUser['direccion_us'], Validators.required],
+      ciudad_us: [this.dataUser['ciudad_us'],Validators.required],
+      departamento_us: [this.dataUser['departamento_us'],Validators.required],
+      telefono_us: [this.dataUser['telefono_us'], [Validators.required, Validators.minLength(10)]],
+      correo_us: [this.dataUser['correo_us'], [Validators.required, Validators.email]],
+      nom_contacto_uno_us: [this.dataUser['nom_contacto_uno_us'], Validators.required],
+      tel_contacto_uno_us: [this.dataUser['tel_contacto_uno_us'], [Validators.required, Validators.minLength(10)]],
+      nom_contacto_dos_us: [this.dataUser['nom_contacto_dos_us'], Validators.required],
+      tel_contacto_dos_us: [this.dataUser['tel_contacto_dos_us'], [Validators.required, Validators.minLength(10)]],
+      terminos: ['false',Validators.required]
+    })
+    
   }
 
+  public ionViewWillEnter = () =>{
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+  }
 
 
   /**
@@ -52,40 +59,23 @@ export class FormularioRegistroPage implements OnInit {
    */
   public GuardarDataForm = () =>{
     this.loadingSrv.showLoading('Procesando datos. \n Un momento por favor...');
-    let findlUser:[];
-    let respUser:[];
 
     if (this.formRegistro.value.terminos === "false") {
       this.alertTerminos();
 
     } else {
 
-      //Validamos si el usuario ya esta registrado
-      this.usuarioSrv.getAllUsersServices().then( resp =>{
-        respUser = resp['usuarios'];
-
-        findlUser = respUser.find( user => user['num_identifica_us'] == this.formRegistro.value.num_identifica_us );
-
-        if (findlUser == undefined) {
-          //Guardamos el usuario en la BD
-          this.usuarioSrv.insertUserService(this.formRegistro.value).then( resp =>{
-            if ( resp['ok'] ) {
-              localStorage.setItem('usuario', JSON.stringify(this.formRegistro.value));
-              this.router.navigate(['tabs','inicio']);
-
-            } else {
-              this.alertInsetFailed();
-            }
-          })
+      //Actualizamos el usuario en la BD
+      this.usuarioSrv.updateUserById(this.formRegistro.value).then( resp =>{
+        if ( resp['ok'] ) {
+          localStorage.setItem('usuario', JSON.stringify(this.formRegistro.value));
+          this.updateSuccessToast();
+          setTimeout(() => { this.router.navigate(['tabs','inicio']); }, 2000);
 
         } else {
-          //Cargamos la info del usuario registrado
-          localStorage.setItem('usuario', JSON.stringify(findlUser));
-          setTimeout(() => { this.router.navigate(['tabs','inicio']); }, 700);
-
+          this.alertInsetFailed();
         }
       })
-
 
       this.loadingSrv.hideLoading();
     }
@@ -126,11 +116,24 @@ export class FormularioRegistroPage implements OnInit {
   async alertInsetFailed(){
     const alert = await this.alertCtrl.create({
       header: 'Error',
-      subHeader: 'Problemas al guardar datos',
-      message: 'Al parecer hay un problema al guardar el registro. \n Inténtalo más tarde.',
+      subHeader: 'Problemas para actualizar los datos',
+      message: 'Al parecer hay un problema para actualizar los datos. \n Inténtalo más tarde.',
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+
+
+  /**
+   * Método Toast del proceso correcto
+   */
+  public updateSuccessToast = async() =>{
+    const toast = await this.toastController.create({
+      message: 'Datos Actualizados con éxito!!',
+      duration: 2000
+    });
+    toast.present();
   }
 
 

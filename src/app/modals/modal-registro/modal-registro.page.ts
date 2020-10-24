@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController, ModalController } from '@ionic/angular';
+import { AlertController, ModalController, ToastController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
@@ -19,6 +19,7 @@ export class ModalRegistroPage implements OnInit {
   constructor(
               private formBuilder: FormBuilder,
               private alertCtrl: AlertController,
+              public toastController: ToastController,
               private usuarioSrv: UsuariosService,
               private loadingSrv: LoadingService,
               private modalCtrl: ModalController,
@@ -70,7 +71,8 @@ export class ModalRegistroPage implements OnInit {
           this.usuarioSrv.insertUserService(this.formRegistro.value).then( resp =>{
             if ( resp['ok'] ) {
               localStorage.setItem('usuario', JSON.stringify(this.formRegistro.value));
-              this.router.navigate(['tabs','inicio']);
+              this.insertSuccessToast();
+              setTimeout(() => { this.router.navigate(['tabs','inicio']); }, 2000);
 
             } else {
               this.alertInsetFailed();
@@ -140,6 +142,19 @@ export class ModalRegistroPage implements OnInit {
   //Método para cerrar modal
   closeModal(){
     this.modalCtrl.dismiss();
+  }
+
+
+
+  /**
+   * Método Toast del proceso correcto
+   */
+  public insertSuccessToast = async() =>{
+    const toast = await this.toastController.create({
+      message: 'Datos Actualizados con éxito!!',
+      duration: 2000
+    });
+    toast.present();
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { OrientacionService } from 'src/app/services/orientacion.service';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 
 @Component({
   selector: 'app-resultado-orientacion',
@@ -12,7 +13,8 @@ export class ResultadoOrientacionPage implements OnInit {
   public dataUser:[];
 
   constructor(
-              private OrientaSrv: OrientacionService
+              private OrientaSrv: OrientacionService,
+              private iab: InAppBrowser
   ) { }
 
   ngOnInit() {
@@ -21,6 +23,11 @@ export class ResultadoOrientacionPage implements OnInit {
 
     //Obtiene data del localStorage
     this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+  }
+
+
+  public navegacionExterna = async(url:string) =>{
+    const browser = await this.iab.create(url, '_system');
   }
 
 }
