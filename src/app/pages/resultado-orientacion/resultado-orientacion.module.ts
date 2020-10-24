@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { ResultadoOrientacionPageRoutingModule } from './resultado-orientacion-routing.module';
 
 import { ResultadoOrientacionPage } from './resultado-orientacion.page';
+import { ComponentsModule } from 'src/app/components/components.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ResultadoOrientacionPageRoutingModule
+    ResultadoOrientacionPageRoutingModule,
+    ComponentsModule
   ],
   declarations: [ResultadoOrientacionPage]
 })

@@ -21,12 +21,9 @@ export class PanicoPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    //this.enviaSmsEmergencia();
 
     //Obtiene data del localStorage
     this.dataUser = JSON.parse( localStorage.getItem('usuario') );
-
-    console.log(this.dataUser);
   }
 
   

@@ -1,9 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>resultadoOrientacion</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-header titulo="Resultado de Orientación"></app-header>
 
-<ion-content>
+<ion-content class="contResultOrienta">
+  <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
+  <ion-slides mode="ios" pager="ios">
+    <ion-slide *ngFor="let orienta of arrayOrienta">
+      <ion-card>
+        <h2>{{orienta.titulo}}</h2>
+        <p>{{orienta.texto}}</p>
+        <ion-label><strong>{{orienta.tipoViolencia}} - {{orienta.tipoAgresor}}</strong></ion-label>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 
 </ion-content>

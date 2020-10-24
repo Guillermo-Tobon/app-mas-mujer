@@ -21,3 +21,16 @@ export interface Usuarios {
   fecha_registro_us: string;
 }
 
+
+export interface ResponseOrienta {
+  ok: boolean;
+  orientacion: Orientacion[];
+}
+
+export interface Orientacion {
+  tipoViolencia: string;
+  tipoAgresor: string;
+  titulo: string;
+  texto: string;
+}
+

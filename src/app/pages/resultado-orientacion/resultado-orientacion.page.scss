@@ -1,0 +1,22 @@
+.contResultOrienta{
+  ion-slides{
+    ion-card{
+      box-shadow: transparent 0px 0px 0px;
+    }
+    h2{
+      background-color: #f63880;
+      border-top-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      font-family: system-ui;
+      color: white;
+      font-size: 20px;
+      padding: 10px;
+    }
+    p{
+      font-size: 22px;
+      font-family: system-ui;
+      color: #8c8c8c;
+    }
+  }
+
+}

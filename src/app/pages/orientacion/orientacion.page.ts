@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { LoadingService } from 'src/app/services/loading.service';
+import { OrientacionService } from 'src/app/services/orientacion.service';
 
 @Component({
   selector: 'app-orientacion',
@@ -13,7 +16,10 @@ export class OrientacionPage implements OnInit {
   public dataUser:[];
 
   constructor( 
-              private AlertCtrl: AlertController
+              private AlertCtrl: AlertController,
+              private orientaSrv: OrientacionService,
+              private loadingSrv: LoadingService,
+              private router: Router
               ) { }
 
   ngOnInit() {
@@ -29,10 +35,23 @@ export class OrientacionPage implements OnInit {
       this.alertFiltrosOrient();
 
     } else {
-      console.log(this.violencia);
-      console.log(this.agresor);
+      this.loadingSrv.showLoading('Consultado información...')
 
-      /// ACA SE HACE OBTIENE LA RESPUESTA DEL SERVICIO
+      this.orientaSrv.getOrientacionById(this.violencia, this.agresor).then( resp =>{
+
+        if ( resp['ok'] ) {
+          this.orientaSrv.getResultOrientacion(resp['orientacion']);
+          this.router.navigate(['tabs', 'resultado-orientacion']);
+          
+        } else {
+          this.alertNoFound();
+        }
+
+      }).catch( err =>{
+        this.alertProblemConnect();
+      })
+      
+      this.loadingSrv.hideLoading();
     }
 
   }
@@ -61,5 +80,34 @@ export class OrientacionPage implements OnInit {
     })
     await alert.present();
   }
+
+
+  /**
+   * Método alert async para validar los filtros de orientación
+   */
+  async alertNoFound(){
+    const alert = await this.AlertCtrl.create({
+      header: 'Respuesta!',
+      subHeader: 'Resultado de la busqueda.',
+      message: 'Al parecer no hay resultados. Intenta con otros filtros.',
+      buttons: ['OK']
+    })
+    await alert.present();
+  }
+
+
+  /**
+   * Método alert async para validar los filtros de orientación
+   */
+  async alertProblemConnect(){
+    const alert = await this.AlertCtrl.create({
+      header: 'Error!',
+      subHeader: 'Problemas de conexión.',
+      message: 'Al parecer hay un problema de conexión. Inténtalo más tarde.',
+      buttons: ['OK']
+    })
+    await alert.present();
+  }
+
 
 }
