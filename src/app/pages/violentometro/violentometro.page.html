@@ -1,6 +1,8 @@
 <app-header titulo="Violentometro"></app-header>
 
 <ion-content>
+  <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
+
   <ion-slides mode="ios" pager="true">
     <ion-slide>
       <ion-img src="../../assets/img/violen1.jpg"></ion-img>

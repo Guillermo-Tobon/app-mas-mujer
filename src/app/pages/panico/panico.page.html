@@ -1,6 +1,8 @@
 <app-header titulo="Pánico"></app-header>
 
 <ion-content>
+  <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
+  
   <ion-refresher slot="fixed" (ionRefresh)="CargandoPanico( $event )">
     <ion-refresher-content pullingIcon="chevron-down-circle-outline" pullingText="Deslice para actualizar" refreshingSpinner="circles" refreshingText="Cargando...">
     </ion-refresher-content>
@@ -19,14 +21,27 @@
         <ion-list>
           <ion-item-sliding>
             <ion-item>
-              <ion-label>Contacto de emergencia 1<br>
-                <p>3124567878</p>
+              <ion-label>{{dataUser['nom_contacto_uno_us']}}<br>
+                <p>{{dataUser['tel_contacto_uno_us']}}</p>
               </ion-label>
               <ion-icon slot="end" name="arrow-back-circle-outline"></ion-icon>
             </ion-item>
             <ion-item-options side="end">
-              <ion-item-option color="secondary" (click)="EnviaMensajeTexto('3196834539')"><ion-icon name="mail-outline"></ion-icon></ion-item-option>
-              <ion-item-option color="success" (click)="RealizaLlamada('3196834539')"><ion-icon name="phone-portrait-outline"></ion-icon></ion-item-option>
+              <ion-item-option color="secondary" (click)="EnviaMensajeTexto(dataUser['tel_contacto_uno_us'])"><ion-icon name="mail-outline"></ion-icon></ion-item-option>
+              <ion-item-option color="success" (click)="RealizaLlamada(dataUser['tel_contacto_uno_us'])"><ion-icon name="phone-portrait-outline"></ion-icon></ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+
+          <ion-item-sliding>
+            <ion-item>
+              <ion-label>{{dataUser['nom_contacto_dos_us']}}<br>
+                <p>{{dataUser['tel_contacto_dos_us']}}</p>
+              </ion-label>
+              <ion-icon slot="end" name="arrow-back-circle-outline"></ion-icon>
+            </ion-item>
+            <ion-item-options side="end">
+              <ion-item-option color="secondary" (click)="EnviaMensajeTexto(dataUser['tel_contacto_dos_us'])"><ion-icon name="mail-outline"></ion-icon></ion-item-option>
+              <ion-item-option color="success" (click)="RealizaLlamada(dataUser['tel_contacto_dos_us'])"><ion-icon name="phone-portrait-outline"></ion-icon></ion-item-option>
             </ion-item-options>
           </ion-item-sliding>
         </ion-list>

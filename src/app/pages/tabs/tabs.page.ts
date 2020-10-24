@@ -10,12 +10,15 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class TabsPage implements OnInit {
 
+  public estadoUser:any;
+
   constructor( private router: Router,
                private actSheetCtrl: ActionSheetController,
-               private callNumber: CallNumber
+               private callNumber: CallNumber,
                ) { }
 
   ngOnInit() {
+
   }
 
 

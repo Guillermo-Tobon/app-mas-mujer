@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
 @Component({
-  selector: 'app-formulario-registro',
-  templateUrl: './formulario-registro.page.html',
-  styleUrls: ['./formulario-registro.page.scss'],
+  selector: 'app-modal-registro',
+  templateUrl: './modal-registro.page.html',
+  styleUrls: ['./modal-registro.page.scss'],
 })
-export class FormularioRegistroPage implements OnInit {
+export class ModalRegistroPage implements OnInit {
 
   public estadoUser:any;
   public exprNum:string = "/^[0-9]$/";
@@ -21,44 +21,43 @@ export class FormularioRegistroPage implements OnInit {
               private alertCtrl: AlertController,
               private usuarioSrv: UsuariosService,
               private loadingSrv: LoadingService,
+              private modalCtrl: ModalController,
               private router: Router
-    ) {
-      this.formRegistro = this.formBuilder.group({
-        nombre_us: ['', Validators.required],
-        num_identifica_us: ['', [Validators.required, Validators.minLength(6)]],
-        tipo_identifica_us: ['Cédula de ciudadanía', [Validators.required]],
-        direccion_us: ['', Validators.required],
-        ciudad_us: ['',Validators.required],
-        departamento_us: ['',Validators.required],
-        telefono_us: ['', [Validators.required, Validators.minLength(10)]],
-        correo_us: ['', [Validators.required, Validators.email]],
-        nom_contacto_uno_us: ['', Validators.required],
-        tel_contacto_uno_us: ['', [Validators.required, Validators.minLength(10)]],
-        nom_contacto_dos_us: ['', Validators.required],
-        tel_contacto_dos_us: ['', [Validators.required, Validators.minLength(10)]],
-        terminos: ['false',Validators.required]
-      })
-    }
+  ) {
+    this.formRegistro = this.formBuilder.group({
+      nombre_us: ['', Validators.required],
+      num_identifica_us: ['', [Validators.required, Validators.minLength(6)]],
+      tipo_identifica_us: ['Cédula de ciudadanía', [Validators.required]],
+      direccion_us: ['', Validators.required],
+      ciudad_us: ['',Validators.required],
+      departamento_us: ['',Validators.required],
+      telefono_us: ['', [Validators.required, Validators.minLength(10)]],
+      correo_us: ['', [Validators.required, Validators.email]],
+      nom_contacto_uno_us: ['', Validators.required],
+      tel_contacto_uno_us: ['', [Validators.required, Validators.minLength(10)]],
+      nom_contacto_dos_us: ['', Validators.required],
+      tel_contacto_dos_us: ['', [Validators.required, Validators.minLength(10)]],
+      terminos: ['false',Validators.required]
+    })
+   }
 
   ngOnInit() {
-
-
+    this.alertRegistroNuevo();
   }
-
 
 
   /**
    * Método para guardar la data del formulario de registro
    */
   public GuardarDataForm = () =>{
-    this.loadingSrv.showLoading('Procesando datos. \n Un momento por favor...');
     let findlUser:[];
     let respUser:[];
-
+    
     if (this.formRegistro.value.terminos === "false") {
       this.alertTerminos();
-
+      
     } else {
+      this.loadingSrv.showLoading('Procesando datos. \n Un momento por favor...');
 
       //Validamos si el usuario ya esta registrado
       this.usuarioSrv.getAllUsersServices().then( resp =>{
@@ -81,23 +80,14 @@ export class FormularioRegistroPage implements OnInit {
         } else {
           //Cargamos la info del usuario registrado
           localStorage.setItem('usuario', JSON.stringify(findlUser));
-          setTimeout(() => { this.router.navigate(['tabs','inicio']); }, 700);
+          this.router.navigate(['tabs','inicio']);
 
         }
+        this.closeModal();
       })
-
 
       this.loadingSrv.hideLoading();
     }
-  }
-
-
-
-  /**
-   * Método que cancela el form y redirecciona al inicio
-   */
-  public CancelarRegistro = () =>{
-    this.router.navigate(['tabs','inicio']);
   }
 
 
@@ -119,6 +109,19 @@ export class FormularioRegistroPage implements OnInit {
   }
 
 
+  /**
+   * Método alert async para validar los datos del form
+   */
+  async alertRegistroNuevo(){
+    const alert = await this.alertCtrl.create({
+      header: 'Hola',
+      subHeader: 'Inicia con el registro',
+      message: 'Hemos detectado que aún no ha utilizado la App de +Mujer. Diligencia este formulario no toma mucho tiempo! ',
+      buttons: ['OK']
+    });
+    await alert.present();
+  }
+
 
   /**
    * Método alert async para validar los datos del form
@@ -134,9 +137,9 @@ export class FormularioRegistroPage implements OnInit {
   }
 
 
-
-
-
-
+  //Método para cerrar modal
+  closeModal(){
+    this.modalCtrl.dismiss();
+  }
 
 }

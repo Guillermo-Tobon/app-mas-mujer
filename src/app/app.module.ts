@@ -13,6 +13,8 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
+import { IonicStorageModule } from '@ionic/storage';
+import { ModalRegistroPageModule } from './modals/modal-registro/modal-registro.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +25,8 @@ import { SMS } from '@ionic-native/sms/ngx';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    IonicStorageModule.forRoot(),
+    ModalRegistroPageModule
   ],
   providers: [
     StatusBar,

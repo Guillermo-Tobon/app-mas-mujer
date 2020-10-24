@@ -10,13 +10,15 @@ export class OrientacionPage implements OnInit {
 
   public violencia: String;
   public agresor: String;
+  public dataUser:[];
 
   constructor( 
               private AlertCtrl: AlertController
               ) { }
 
   ngOnInit() {
-    
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
   }
 
   /**

@@ -4,7 +4,7 @@
     <h1>Validación de usuario</h1>
     <app-logo></app-logo>
     <div class="contTexto">
-      <h4>Hola!! Queremos ofrecerte una excelente asesoría, para ello necesitamos validar tu número de identificación para que cuentes con una sistencia completa. Gracias y bienvenida!!</h4>
+      <h4>Hola!! Queremos ofrecerte una excelente asesoría, para ello necesitamos validar tu número de identificación para que cuentes con una asistencia completa. Gracias y bienvenida!!</h4>
     </div>
     <form [formGroup]="formValidarUser" (ngSubmit)="ValidarUsuario()" >
       <ion-grid>
@@ -20,12 +20,12 @@
         <ion-row>
           <ion-col size="6">
             <ion-button type="submit" class="btnAceptar" [disabled]="!formValidarUser.valid" expand="block">
-              <ion-icon slot="start" name="send-outline"></ion-icon>
-              Guardar
+              <ion-icon slot="start" name="log-in-outline"></ion-icon>
+              Consultar
             </ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="onClick()" class="btnCancelar" expand="block">
+            <ion-button class="btnCancelar" expand="block">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Cancelar
             </ion-button>

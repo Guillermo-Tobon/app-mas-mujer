@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/tabs/inicio',
+    redirectTo: '/home',
     pathMatch: 'full'
   },
   {
@@ -14,7 +14,12 @@ const routes: Routes = [
   {
     path: 'tabs',
     loadChildren: () => import('./pages/tabs/tabs.module').then( m => m.TabsPageModule)
-  }
+  },
+  // {
+  //   path: 'modal-registro',
+  //   loadChildren: () => import('./modals/modal-registro/modal-registro.module').then( m => m.ModalRegistroPageModule)
+  // }
+
 
 ];
 

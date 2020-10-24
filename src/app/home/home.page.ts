@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
+import { UsuariosService } from '../services/usuarios.service';
+import { LoadingService } from '../services/loading.service';
+import { Router } from '@angular/router';
+import { InformacionService } from '../services/informacion.service';
+import { ModalRegistroPageModule } from '../modals/modal-registro/modal-registro.module';
+import { ModalRegistroPage } from '../modals/modal-registro/modal-registro.page';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +20,12 @@ export class HomePage implements OnInit {
 
   constructor(
               private formBuilder: FormBuilder,
-              private alertCtrl: AlertController
+              private alertCtrl: AlertController,
+              private usuarioSrv: UsuariosService,
+              private loadingSrv: LoadingService,
+              private infoSrv: InformacionService,
+              private modalCtrl: ModalController,
+              private router: Router
   ) {
     this.formValidarUser = this.formBuilder.group({
       numeroIdentifica: ['', [Validators.required, Validators.minLength(6)]]
@@ -29,14 +40,19 @@ export class HomePage implements OnInit {
   /**
    * Método para guardar la data del formulario de registro
    */
-  public ValidarUsuario(){
-    if (this.formValidarUser.value.numeroIdentifica === "") {
-      this.alertUserValida();
+  public ValidarUsuario = () =>{
+    this.loadingSrv.showLoading('Consultando datos de usuario...');
+    let idUser = this.formValidarUser.value.numeroIdentifica;
+    
+    this.usuarioSrv.getUserPorIdService(idUser).then( data =>{
+      localStorage.setItem('usuario', JSON.stringify(data['usuario']))
+      this.router.navigate(['tabs','inicio']);
+      
+    }).catch( err =>{
+      this.openModalRegistro();
+    })
 
-    } else {
-      console.log(this.formValidarUser.value);
-
-    }
+    this.loadingSrv.hideLoading();
   }
 
 
@@ -63,6 +79,18 @@ export class HomePage implements OnInit {
       buttons: ['OK']
     });
     await alert.present();
+  }
+
+
+
+  /**
+   * Método para abrir el modal menú
+   */
+  async openModalRegistro(){
+    const modal = await this.modalCtrl.create({
+      component: ModalRegistroPage
+    });
+    modal.present();
   }
 
 

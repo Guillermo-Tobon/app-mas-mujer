@@ -8,9 +8,13 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 })
 export class LineasEmergenciaPage implements OnInit {
 
+  public dataUser:[];
+
   constructor( private callNumber: CallNumber ) { }
 
   ngOnInit() {
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
   }
 
   /**

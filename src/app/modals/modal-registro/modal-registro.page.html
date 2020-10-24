@@ -1,10 +1,21 @@
-<app-header titulo="Datos de usuario"></app-header>
+<ion-header class="headerPages">
+  <ion-toolbar>
+    <ion-title>Formulario de registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()" expand="block" fill="clear" shape="round">
+        <ion-icon slot="end" name="close-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
   <div id="container">
-    <app-logo></app-logo>
+    <div class="contLogo">
+      <ion-img src="../../assets/img/mas-mujer.png"></ion-img>
+    </div>
     <div class="contTexto">
-      <h4>Actualice los datos que sean necesarios. Recuerde que esta información es necesaria en caso de emergencia.</h4>
+      <h4>Diligencie el siguiente formulario, son necesarios para tener un registro de sus datos.</h4>
     </div>
     <form [formGroup]="formRegistro" (ngSubmit)="GuardarDataForm()" >
       <ion-grid>
@@ -104,7 +115,7 @@
             </ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button (click)="CancelarRegistro()" class="btnCancelar" expand="block">
+            <ion-button (click)="closeModal()" class="btnCancelar" expand="block">
               <ion-icon slot="start" name="trash-outline"></ion-icon>
               Cancelar
             </ion-button>

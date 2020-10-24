@@ -8,9 +8,13 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 })
 export class ViolentometroPage implements OnInit {
 
+  public dataUser:[];
+
   constructor( private iab: InAppBrowser ) { }
 
   ngOnInit() {
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
   }
 
 

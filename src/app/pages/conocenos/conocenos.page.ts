@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConocenosPage implements OnInit {
 
+  public dataUser:[];
+
   constructor() { }
 
   ngOnInit() {
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
   }
 
 }

@@ -11,6 +11,8 @@ import { LoadingService } from 'src/app/services/loading.service';
 })
 export class PanicoPage implements OnInit {
 
+  public dataUser:[];
+
   constructor(
                 private alertCtrl: AlertController,
                 private loadService: LoadingService,
@@ -19,7 +21,12 @@ export class PanicoPage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.enviaSmsEmergencia();
+    //this.enviaSmsEmergencia();
+
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+
+    console.log(this.dataUser);
   }
 
   

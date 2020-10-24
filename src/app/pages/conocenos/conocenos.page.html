@@ -1,6 +1,8 @@
 <app-header titulo="Conócenos"></app-header>
 
 <ion-content>
+  <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
+
   <div id="container">
     <ion-slides mode="ios" pager="true">
       <ion-slide class="slide-1">

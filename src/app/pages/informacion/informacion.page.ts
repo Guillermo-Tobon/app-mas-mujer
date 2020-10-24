@@ -11,6 +11,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 export class InformacionPage implements OnInit {
 
   public infoData:any = [];
+  public dataUser:[];
 
   constructor( 
                 private infoServices: InformacionService,
@@ -20,6 +21,9 @@ export class InformacionPage implements OnInit {
   ngOnInit() {
 
     this.getInfoData();
+    
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
   }
 
 

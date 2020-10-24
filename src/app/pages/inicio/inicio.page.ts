@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { InformacionService } from 'src/app/services/informacion.service';
 
 @Component({
   selector: 'app-inicio',
@@ -8,12 +9,21 @@ import { Router } from '@angular/router';
 })
 export class InicioPage implements OnInit {
 
+  public dataUser:[];
+  public estadoUser:any;
+
   constructor( 
-              private router: Router
+              private router: Router,
+              private infoSrv: InformacionService
               ) { }
 
   ngOnInit() {
+
+    //Obtiene data del localStorage
+    this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+    
   }
+
 
 
 
