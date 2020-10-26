@@ -77,18 +77,26 @@ export class ModalRegistroPage implements OnInit {
             } else {
               this.alertInsetFailed();
             }
+            this.loadingSrv.hideLoading();
+
+          }).catch( err =>{
+            this.loadingSrv.hideLoading();
           })
 
         } else {
           //Cargamos la info del usuario registrado
           localStorage.setItem('usuario', JSON.stringify(findlUser));
-          this.router.navigate(['tabs','inicio']);
+          this.registerExisteToast();
+          setTimeout(() => { this.router.navigate(['tabs','inicio']); }, 2000);
 
         }
+        this.loadingSrv.hideLoading();
         this.closeModal();
+
+      }).catch( err =>{
+        this.loadingSrv.hideLoading();
       })
 
-      this.loadingSrv.hideLoading();
     }
   }
 
@@ -152,6 +160,18 @@ export class ModalRegistroPage implements OnInit {
   public insertSuccessToast = async() =>{
     const toast = await this.toastController.create({
       message: 'Datos Actualizados con éxito!!',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
+  /**
+   * Método Toast del proceso correcto
+   */
+  public registerExisteToast = async() =>{
+    const toast = await this.toastController.create({
+      message: 'Ya esta registrada!!',
       duration: 2000
     });
     toast.present();

@@ -47,17 +47,14 @@ export class HomePage implements OnInit {
     this.usuarioSrv.getUserPorIdService(idUser).then( data =>{
       localStorage.setItem('usuario', JSON.stringify(data['usuario']))
       this.router.navigate(['tabs','inicio']);
+      this.loadingSrv.hideLoading();
       
     }).catch( err =>{
       this.openModalRegistro();
+      this.loadingSrv.hideLoading();
     })
 
-    this.loadingSrv.hideLoading();
   }
-
-
-
-
 
 
 

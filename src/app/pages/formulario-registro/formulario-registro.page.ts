@@ -58,12 +58,12 @@ export class FormularioRegistroPage implements OnInit {
    * Método para guardar la data del formulario de registro
    */
   public GuardarDataForm = () =>{
-    this.loadingSrv.showLoading('Procesando datos. \n Un momento por favor...');
-
+    
     if (this.formRegistro.value.terminos === "false") {
       this.alertTerminos();
-
+      
     } else {
+      this.loadingSrv.showLoading('Procesando datos. \n Un momento por favor...');
 
       //Actualizamos el usuario en la BD
       this.usuarioSrv.updateUserById(this.formRegistro.value).then( resp =>{
@@ -75,9 +75,13 @@ export class FormularioRegistroPage implements OnInit {
         } else {
           this.alertInsetFailed();
         }
+        this.loadingSrv.hideLoading();
+        
+      }).catch( err =>{
+        this.loadingSrv.hideLoading();
+
       })
 
-      this.loadingSrv.hideLoading();
     }
   }
 

@@ -1,36 +1,27 @@
-ion-slides{
-  height: 100%;
-  --bullet-background-active: #f63880;
-  .slide{
-    ion-card{
-      position: relative;
-      border-top-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-      margin: 0 50px;
-      ion-card-subtitle{
-        color:#f63880;
-        font-family: system-ui;
-        font-size: 10px;
-      }
-      ion-card-title{
-        font-family: system-ui;
-        font-size: 20px;
-      }
-      ion-card-content{
-        font-family: system-ui;
-        font-size: 14px;
-        color: #8c8c8c;
-      }
-      .btnVerCompleto{
-        font-family: system-ui;
-        --background: none;
-        background-color: #ad2ea9;
-        border: 2px solid #ad2ea9;
-        --border-color: transparent;
-        border-radius: 35px;
-        font-size: 15px;
-        color: white;
-      }
-    }
+ion-card{
+  position: relative;
+  ion-card-subtitle{
+    color:#f63880;
+    font-family: system-ui;
+    font-size: 10px;
+  }
+  ion-card-title{
+    font-family: system-ui;
+    font-size: 20px;
+  }
+  ion-card-content{
+    font-family: system-ui;
+    font-size: 14px;
+    color: #8c8c8c;
+  }
+  .btnVerCompleto{
+    font-family: system-ui;
+    --background: none;
+    background-color: #ad2ea9;
+    border: 2px solid #ad2ea9;
+    --border-color: transparent;
+    border-radius: 35px;
+    font-size: 15px;
+    color: white;
   }
 }

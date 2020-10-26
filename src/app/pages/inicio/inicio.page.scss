@@ -3,26 +3,21 @@
   ion-col{
     padding: 10px 15px;
     max-width: 47% !important;
-    margin: 40px 3px;
+    margin: 15px 3px;
     background-color: #f63880;
     border-top-left-radius: 50px;
     border-bottom-right-radius: 50px;
     border: 0;
     position: relative;
+    h2{
+      color: white;
+      margin: 5px 0;
+    }
     p{
-      position: absolute;
-      bottom: -82px;
-      left: -5px;
-      width: 136px;
-      height: 72px;
-      overflow: hidden;
-      background-color: white;
-      color: #8c8c8c;
-      border-top-left-radius: 50px;
-      border-bottom-right-radius: 50px;
-      padding: 18px 11px;
-      font-size: 10px;
-      box-shadow: 2px 2px 2px 2px;
+      color: #ffffff;
+      font-size: 12px;
+      font-family: system-ui;
+      margin: 2px 0;
     }
     ion-img{
       width: 100px;
@@ -38,9 +33,8 @@
     background-color: white;
     box-shadow:1px 5px 10px -2px #f63880;
   }
+  ion-col:hover h2,
   ion-col:hover p{
-    background-color:#f63880;
-    box-shadow:1px 5px 10px -2px #f63880;
-    color: white;
+    color: #f63880;
   }
 }
