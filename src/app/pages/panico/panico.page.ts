@@ -3,6 +3,10 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { async } from '@angular/core/testing';
+
+declare var google;
 
 @Component({
   selector: 'app-panico',
@@ -12,11 +16,13 @@ import { LoadingService } from 'src/app/services/loading.service';
 export class PanicoPage implements OnInit {
 
   public dataUser:[];
+  public mapRef:any = null;
 
   constructor(
                 private alertCtrl: AlertController,
                 private loadService: LoadingService,
                 private callNumber: CallNumber,
+                private geoloca: Geolocation,
                 private sms:SMS
     ) { }
 
@@ -24,6 +30,8 @@ export class PanicoPage implements OnInit {
 
     //Obtiene data del localStorage
     this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+
+    this.loadMap()
   }
 
   
@@ -94,6 +102,53 @@ export class PanicoPage implements OnInit {
       console.log( err );
 
     });
+  }
+
+
+
+  public loadMap = async() =>{
+    this.loadService.showLoading('Cargando ubicación...');
+
+    const myLatLng = await this.getLocation();
+    const mapEle: HTMLElement = document.getElementById('map');
+
+    this.mapRef = new google.maps.Map( mapEle, {
+      center: myLatLng,
+      zoom: 14
+    });
+
+    google.maps.event.addListenerOnce(this.mapRef, 'idle', () =>{
+      this.loadService.hideLoading();
+      this.addMarker(myLatLng.lat, myLatLng.lng);
+    
+    });
+   }
+
+
+   /**
+    * Método privado para obtener la localización
+    */
+  private getLocation = async() =>{
+    const rta = await this.geoloca.getCurrentPosition();
+    return {
+      lat: rta.coords.latitude,
+      lng: rta.coords.longitude
+    }
+  }
+   
+
+  /**
+   * Método privado para generar un marker
+   * @param lat -> Latitud
+   * @param lng -> Longitud
+   */
+  private addMarker = (lat:Number, lng:Number) =>{
+    const marker = new google.maps.Marker({
+      position: { lat, lng },
+      zoom: 8,
+      map: this.mapRef,
+      title: 'Mi ubicación actual.'
+    });  
   }
 
 

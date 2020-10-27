@@ -15,6 +15,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ModalRegistroPageModule } from './modals/modal-registro/modal-registro.module';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { ModalRegistroPageModule } from './modals/modal-registro/modal-registro.
     SplashScreen,
     CallNumber,
     InAppBrowser,
+    Geolocation,
     SMS,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
