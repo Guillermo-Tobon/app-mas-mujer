@@ -65,7 +65,7 @@ export class PanicoPage implements OnInit, AfterViewInit {
         intent: 'INTENT'
       }
     }
-    this.sms.send( number, `Hola ${nomContacto}, te estoy contactando desde la App +Mujer y necesito ayuda. Me encuentro en esta ubicación :`, options).then( resp =>{
+    this.sms.send( number, `Hola ${nomContacto}, te estoy contactando desde la App +Mujer y necesito ayuda. Me encuentro en esta ubicación :${this.urlMap}`, options).then( resp =>{
       console.log( resp );
     }).catch( err =>{
       console.log("ERROR -> ", err );
@@ -95,6 +95,8 @@ export class PanicoPage implements OnInit, AfterViewInit {
     this.loadService.showLoading('Cargando ubicación...');
     const myLatLng = await this.getLocation();
 
+    this.urlMap  = `https://www.openstreetmap.org/?mlat=${myLatLng.lat}&mlon=${myLatLng.lng}#map=19/${myLatLng.lat}/${myLatLng.lng}`;
+    
     mapboxgl.accessToken = environment.API_KEY_MAPA;
     const map = new mapboxgl.Map({
       style: 'mapbox://styles/mapbox/light-v10',
@@ -160,7 +162,7 @@ export class PanicoPage implements OnInit, AfterViewInit {
         );
       });
     this.loadService.hideLoading();
-   }
+  }
 
 
    /**

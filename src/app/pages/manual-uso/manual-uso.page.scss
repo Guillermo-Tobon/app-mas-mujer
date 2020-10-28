@@ -1,0 +1,16 @@
+.sliderUsoApp{
+  ion-slide{
+    ion-card{
+      border: 3px solid #f63880;
+      border-top-left-radius: 32px;
+      border-bottom-right-radius: 32px;
+      padding: 10px 15px;
+      p{
+        font-family: system-ui;
+        font-size: 14px;
+        color: #8c8c8c;
+        margin: 1px 5px;
+      }
+    }
+  }
+}
