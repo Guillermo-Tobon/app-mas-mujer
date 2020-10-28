@@ -4,13 +4,6 @@
     width: 100%;
     height: 140px;
     overflow: hidden;
-    ion-item-sliding{
-      ion-item-options{
-        ion-icon{
-          font-size: 30px !important;
-        }
-      }
-    }
     ion-img{
       width: 140px;
       margin: auto;
@@ -20,6 +13,11 @@
       -o-transition: all 0.3s ease-in-out;
       transition: all 0.3s ease-in-out;
       animation: pulse .3s infinite;
+    }
+  }
+  ion-item-options{
+    ion-icon{
+      font-size: 20px;
     }
   }
   p{
@@ -32,6 +30,7 @@
 #map{
   width: 100%;
   height: 200px;
+  background-color: #f6f6f4;
 }
 
 @keyframes pulse {

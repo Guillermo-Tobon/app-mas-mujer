@@ -1,86 +1,71 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { AlertController, LoadingController } from '@ionic/angular';
 import { LoadingService } from 'src/app/services/loading.service';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { async } from '@angular/core/testing';
+import { environment } from '../../../environments/environment';
 
-declare var google;
+declare var mapboxgl: any;
 
 @Component({
   selector: 'app-panico',
   templateUrl: './panico.page.html',
   styleUrls: ['./panico.page.scss'],
 })
-export class PanicoPage implements OnInit {
+export class PanicoPage implements OnInit, AfterViewInit {
 
   public dataUser:[];
   public mapRef:any = null;
+  public urlMap: String;
 
   constructor(
-                private alertCtrl: AlertController,
-                private loadService: LoadingService,
-                private callNumber: CallNumber,
-                private geoloca: Geolocation,
-                private sms:SMS
+              private alertCtrl: AlertController,
+              private loadService: LoadingService,
+              private callNumber: CallNumber,
+              private geoloca: Geolocation,
+              private sms:SMS
     ) { }
 
   ngOnInit() {
 
     //Obtiene data del localStorage
     this.dataUser = JSON.parse( localStorage.getItem('usuario') );
-
-    this.loadMap()
   }
+  
 
+  ngAfterViewInit(){
+    //Carga el mapa
+    this.loadMap();
+  }
+  
   
   /**
    * Método para recargar la página de pánico
    * @param event -> Data del evento refresh
    */
   public CargandoPanico( event:any ){
-    this.enviaSmsEmergencia();
+    //Carga el mapa
+    this.loadMap();
     event.target.complete();
   }
 
-
-  /**
-   * Método que envía los mensajes de emergencia
-   */
-  public enviaSmsEmergencia(){
-    this.loadService.showLoading('Estamos enviando un mensaje de texto a los contactos de emergencia...');
-    const options = {
-      replaceLineBreaks: false,
-      android: {
-        intent: 'INTENT'
-      }
-    }
-
-    this.sms.send( '3196834539', 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
-      console.log( resp );
-    }).catch( err =>{
-      console.log("ERROR -> ", err );
-    })
-
-    this.loadService.hideLoading();
-
-  }
 
 
   /**
    * Método que envía mensaje de emergencia
    * @param number -> Número telefónico
    */
-  public EnviaMensajeTexto(number:any){
+  public EnviaMensajeTexto(number:any, nomContacto:String){
     this.loadService.showLoading('Estamos procesando el mensaje de emergencia...');
+    
     const options = {
       replaceLineBreaks: false,
       android: {
         intent: 'INTENT'
       }
     }
-    this.sms.send( number, 'Hola Contacto de emergencia, necesito ayuda!!', options).then( resp =>{
+    this.sms.send( number, `Hola ${nomContacto}, te estoy contactando desde la App +Mujer y necesito ayuda. Me encuentro en esta ubicación :`, options).then( resp =>{
       console.log( resp );
     }).catch( err =>{
       console.log("ERROR -> ", err );
@@ -108,20 +93,73 @@ export class PanicoPage implements OnInit {
 
   public loadMap = async() =>{
     this.loadService.showLoading('Cargando ubicación...');
-
     const myLatLng = await this.getLocation();
-    const mapEle: HTMLElement = document.getElementById('map');
 
-    this.mapRef = new google.maps.Map( mapEle, {
-      center: myLatLng,
-      zoom: 14
-    });
+    mapboxgl.accessToken = environment.API_KEY_MAPA;
+    const map = new mapboxgl.Map({
+      style: 'mapbox://styles/mapbox/light-v10',
+      center: [Number(myLatLng.lng), Number(myLatLng.lat)],
+      zoom: 16.5,
+      pitch: 45,
+      bearing: -17.6,
+      container: 'map',
+      antialias: true
+      });
 
-    google.maps.event.addListenerOnce(this.mapRef, 'idle', () =>{
-      this.loadService.hideLoading();
-      this.addMarker(myLatLng.lat, myLatLng.lng);
-    
-    });
+      map.on('load', () =>{
+        // Insert the layer beneath any symbol layer.
+        map.resize();
+        const layers = map.getStyle().layers;
+
+        //Marker
+        new mapboxgl.Marker().setLngLat([Number(myLatLng.lng), Number(myLatLng.lat)]).addTo(map);
+         
+        let labelLayerId;
+        for (let i = 0; i < layers.length; i++) {
+          if (layers[i].type === 'symbol' && layers[i].layout['text-field']) {
+            labelLayerId = layers[i].id;
+            break;
+          }
+        }
+         
+        map.addLayer(
+            {
+              'id': '3d-buildings',
+              'source': 'composite',
+              'source-layer': 'building',
+              'filter': ['==', 'extrude', 'true'],
+              'type': 'fill-extrusion',
+              'minzoom': 15,
+              'paint': {
+              'fill-extrusion-color': '#aaa',
+         
+              // use an 'interpolate' expression to add a smooth transition effect to the
+              // buildings as the user zooms in
+              'fill-extrusion-height': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                15,
+                0,
+                15.05,
+                ['get', 'height']
+              ],
+              'fill-extrusion-base': [
+                'interpolate',
+                ['linear'],
+                ['zoom'],
+                15,
+                0,
+                15.05,
+                ['get', 'min_height']
+              ],
+              'fill-extrusion-opacity': 0.6
+            }
+            },
+            labelLayerId
+        );
+      });
+    this.loadService.hideLoading();
    }
 
 
@@ -135,21 +173,7 @@ export class PanicoPage implements OnInit {
       lng: rta.coords.longitude
     }
   }
-   
-
-  /**
-   * Método privado para generar un marker
-   * @param lat -> Latitud
-   * @param lng -> Longitud
-   */
-  private addMarker = (lat:Number, lng:Number) =>{
-    const marker = new google.maps.Marker({
-      position: { lat, lng },
-      zoom: 8,
-      map: this.mapRef,
-      title: 'Mi ubicación actual.'
-    });  
-  }
+  
 
 
 
