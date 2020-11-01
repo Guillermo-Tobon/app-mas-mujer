@@ -94,7 +94,7 @@ export class PanicoPage implements OnInit, AfterViewInit {
    * Método que crea el mapa
    */
   public loadMap = async() =>{
-    this.loadService.showLoading('Cargando ubicación...');
+    this.loadService.showLoading('Cargando ubicación, recuerde habilitar la localización del celular...');
     const myLatLng = await this.getLocation();
 
     this.urlMap  = `https://www.openstreetmap.org/?mlat=${myLatLng.lat}&mlon=${myLatLng.lng}#map=19/${myLatLng.lat}/${myLatLng.lng}`;
