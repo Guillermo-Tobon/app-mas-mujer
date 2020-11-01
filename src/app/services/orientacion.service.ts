@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { ResponseOrienta } from '../interfaces/interfaces';
+import { ResponseOrienta, ResponseEntidad } from '../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -28,13 +28,20 @@ export class OrientacionService {
     ).toPromise();
   }
 
-
+x
   /**
    * Método para regresar el array con la info de orietación
    * @param array -> Array con la info de orientación
    */
   public getResultOrientacion = (array:[]) =>{
     return this.arrayOrienta = array;
+  }
+
+
+  public getEntidadesById = (idEnti:any) =>{
+    return this.http.get<ResponseEntidad>(`${environment.URL_API}/entidades/${idEnti}`, this.httpOptions).pipe(
+      map( data => data ) 
+    ).toPromise();
   }
 
 

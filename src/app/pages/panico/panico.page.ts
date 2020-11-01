@@ -90,7 +90,9 @@ export class PanicoPage implements OnInit, AfterViewInit {
   }
 
 
-
+  /**
+   * Método que crea el mapa
+   */
   public loadMap = async() =>{
     this.loadService.showLoading('Cargando ubicación...');
     const myLatLng = await this.getLocation();
@@ -165,9 +167,9 @@ export class PanicoPage implements OnInit, AfterViewInit {
   }
 
 
-   /**
-    * Método privado para obtener la localización
-    */
+  /**
+  * Método privado para obtener la localización
+  */
   private getLocation = async() =>{
     const rta = await this.geoloca.getCurrentPosition();
     return {

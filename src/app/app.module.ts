@@ -16,6 +16,7 @@ import { SMS } from '@ionic-native/sms/ngx';
 import { IonicStorageModule } from '@ionic/storage';
 import { ModalRegistroPageModule } from './modals/modal-registro/modal-registro.module';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { ModalMapaAyudaPageModule } from './modals/modal-mapa-ayuda/modal-mapa-ayuda.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     FormsModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
-    ModalRegistroPageModule
+    ModalRegistroPageModule,
+    ModalMapaAyudaPageModule
   ],
   providers: [
     StatusBar,

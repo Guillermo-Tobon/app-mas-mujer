@@ -81,7 +81,7 @@ export class HomePage implements OnInit {
 
 
   /**
-   * Método para abrir el modal menú
+   * Método para abrir el modal registro
    */
   async openModalRegistro(){
     const modal = await this.modalCtrl.create({

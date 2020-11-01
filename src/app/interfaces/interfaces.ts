@@ -34,3 +34,22 @@ export interface Orientacion {
   texto: string;
 }
 
+
+
+export interface ResponseEntidad {
+  ok: boolean;
+  entidades: Entidad[];
+}
+
+export interface Entidad {
+  id: number;
+  cod_enti: number;
+  nombre_enti: string;
+  direccion_enti: string;
+  barrio_enti: string;
+  telefono_enti: string;
+  celular_enti: string;
+  lat_enti: string;
+  lng_enti: string;
+}
+
