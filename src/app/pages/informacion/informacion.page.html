@@ -4,15 +4,15 @@
   <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
 
   <ion-card *ngFor="let info of infoData; let i = index;">
-    <ion-img [src]="info.imagen"></ion-img>
+    <ion-img [src]="info['imagen_info']"></ion-img>
     <ion-card-header>
-      <ion-card-subtitle>{{info.tag}}</ion-card-subtitle>
-      <ion-card-title>{{info.titulo}}</ion-card-title>
+      <ion-card-subtitle>{{info['tag_info']}}</ion-card-subtitle>
+      <ion-card-title>{{info['titulo_info']}}</ion-card-title>
     </ion-card-header>
-    <ion-card-content>{{info.contenido}}</ion-card-content>
+    <ion-card-content>{{info['contenido_info']}}</ion-card-content>
     <ion-item>
-      <span><i><small slot="start">{{info.fechaPublicacion}}</small></i></span>
-      <ion-button class="btnVerCompleto" fill="outline" slot="end" (click)="VerArticuloCompleto(info.urlArticulo)">Ver completo</ion-button>
+      <span><i><small slot="start">{{info['fecha_info'] | date }}</small></i></span>
+      <ion-button class="btnVerCompleto" fill="outline" slot="end" (click)="VerArticuloCompleto(info['url_articulo_info'])">Ver completo</ion-button>
     </ion-item>
   </ion-card>
 

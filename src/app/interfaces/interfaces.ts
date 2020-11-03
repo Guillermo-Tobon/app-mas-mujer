@@ -53,3 +53,20 @@ export interface Entidad {
   lng_enti: string;
 }
 
+
+
+export interface ResponseInformacion {
+  ok: boolean;
+  informacion: Informacion[];
+}
+
+export interface Informacion {
+  id_info: number;
+  titulo_info: string;
+  contenido_info: string;
+  imagen_info: string;
+  url_articulo_info: string;
+  tag_info: string;
+  fecha_info: string;
+}
+
