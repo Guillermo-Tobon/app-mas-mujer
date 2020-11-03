@@ -29,7 +29,7 @@ const routes: Routes = [
         loadChildren: () => import('../lineas-emergencia/lineas-emergencia.module').then( m => m.LineasEmergenciaPageModule)
       },
       {
-        path: 'resultado-orientacion',
+        path: 'resultado-orientacion/:idVio/:idAgre',
         loadChildren: () => import('../resultado-orientacion/resultado-orientacion.module').then( m => m.ResultadoOrientacionPageModule)
       },
       {

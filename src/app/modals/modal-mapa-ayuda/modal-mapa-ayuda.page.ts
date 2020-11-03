@@ -1,5 +1,5 @@
-import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AlertController, ModalController } from '@ionic/angular';
 import { environment } from '../../../environments/environment';
 import { LoadingService } from 'src/app/services/loading.service';
 import { CallNumber } from '@ionic-native/call-number/ngx';
@@ -18,6 +18,7 @@ export class ModalMapaAyudaPage implements OnInit, AfterViewInit {
 
   constructor(
               private modalCtrl: ModalController,
+              private alertCtrl: AlertController,
               private loadService: LoadingService,
               private callNumber: CallNumber,
   ) { }
@@ -30,7 +31,6 @@ export class ModalMapaAyudaPage implements OnInit, AfterViewInit {
   ngAfterViewInit(){
     this.dataEntidades = [];
     this.dataEntidades = JSON.parse(localStorage.getItem('entidades'));
-    console.log(this.dataEntidades);
 
     //Carga el mapa
     this.loadMap(this.dataEntidades);
@@ -51,7 +51,7 @@ export class ModalMapaAyudaPage implements OnInit, AfterViewInit {
       zoom: 12.5,
       pitch: 45,
       bearing: -17.6,
-      container: 'map',
+      container: 'map2',
       antialias: true
       });
 
@@ -122,10 +122,9 @@ export class ModalMapaAyudaPage implements OnInit, AfterViewInit {
    */
   public RealizaLlamada(number:any){
     this.callNumber.callNumber(number, true).then( resp => {
-      console.log( resp );
 
     }).catch( err =>{
-      console.log( err );
+      this.AlertCargaFailed();
 
     });
   }
@@ -138,6 +137,19 @@ export class ModalMapaAyudaPage implements OnInit, AfterViewInit {
     this.dataEntidades = [];
     this.modalCtrl.dismiss();
   }
+
+
+
+
+  public AlertCargaFailed = async() =>{
+    const alert = await this.alertCtrl.create({
+      header: 'Error',
+      subHeader: 'Problemas de conexón',
+      message: 'Al parecer hay un problema de conexión. \n Inténtalo más tarde.',
+      buttons: ['OK']
+    });
+    await alert.present();
+  } 
 
 
 }

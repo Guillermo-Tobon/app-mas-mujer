@@ -1,6 +1,9 @@
 <app-header titulo="Resultado de Orientación"></app-header>
 
 <ion-content class="contResultOrienta">
+  <button (click)="VolverOrientacion()" class="btnVolver">
+    <ion-icon name="arrow-undo-outline"></ion-icon>
+  </button>
   <app-infousuario [nombreUser]="dataUser['nombre_us']" [correoUser]="dataUser['correo_us']" ></app-infousuario>
   <ion-slides mode="ios" pager="ios">
     <ion-slide *ngFor="let orienta of arrayOrienta">

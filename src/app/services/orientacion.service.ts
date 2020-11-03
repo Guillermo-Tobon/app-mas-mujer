@@ -23,12 +23,10 @@ export class OrientacionService {
    * @param agre -> Id tipo de agresor
    */
   public getOrientacionById = (vio:any, agre:any) =>{
-    return this.http.get<ResponseOrienta>(`${environment.URL_API}/orientacion/${vio}/${agre}`, this.httpOptions).pipe(
-      map( data => data )
-    ).toPromise();
+    return this.http.get<ResponseOrienta>(`${environment.URL_API}/orientacion/${vio}/${agre}`, this.httpOptions);
   }
 
-x
+
   /**
    * Método para regresar el array con la info de orietación
    * @param array -> Array con la info de orientación
@@ -38,6 +36,11 @@ x
   }
 
 
+  
+  /**
+   * Método para obtener las entidades por ID
+   * @param idEnti -> ID entidades
+   */
   public getEntidadesById = (idEnti:any) =>{
     return this.http.get<ResponseEntidad>(`${environment.URL_API}/entidades/${idEnti}`, this.httpOptions).pipe(
       map( data => data ) 

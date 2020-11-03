@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { LoadingService } from 'src/app/services/loading.service';
-import { OrientacionService } from 'src/app/services/orientacion.service';
 
 @Component({
   selector: 'app-orientacion',
@@ -17,8 +15,6 @@ export class OrientacionPage implements OnInit {
 
   constructor( 
               private AlertCtrl: AlertController,
-              private orientaSrv: OrientacionService,
-              private loadingSrv: LoadingService,
               private router: Router
               ) { }
 
@@ -30,35 +26,24 @@ export class OrientacionPage implements OnInit {
   /**
    * Método para obtener la orientación según el filtro
    */
-  public ObtenerOrientacion(){
+  public ObtenerOrientacion = () =>{
     if(this.violencia == undefined || this.agresor == undefined){
       this.alertFiltrosOrient();
 
     } else {
-      this.loadingSrv.showLoading('Consultado información...')
-
-      this.orientaSrv.getOrientacionById(this.violencia, this.agresor).then( resp =>{
-
-        if ( resp['ok'] ) {
-          this.orientaSrv.getResultOrientacion(resp['orientacion']);
-          this.router.navigate(['tabs', 'resultado-orientacion']);
-          
-        } else {
-          this.alertNoFound();
-        }
-
-      }).catch( err =>{
-        this.alertProblemConnect();
-      })
+      this.router.navigate(['tabs', 'resultado-orientacion', this.violencia, this.agresor]);
       
-      this.loadingSrv.hideLoading();
     }
-
   }
 
 
 
-
+  /**
+   * Método para navegar al inicio 
+   */
+  public CancelarOrientacion = () =>{
+    this.router.navigate(['tabs', 'inicio']);
+  }
 
 
 
@@ -76,34 +61,6 @@ export class OrientacionPage implements OnInit {
       header: 'Advertencia!',
       subHeader: 'Filtros de busqueda.',
       message: 'Te falta seleccionar o un tipo de violencia o un tipo de agresor.',
-      buttons: ['OK']
-    })
-    await alert.present();
-  }
-
-
-  /**
-   * Método alert async para validar los filtros de orientación
-   */
-  async alertNoFound(){
-    const alert = await this.AlertCtrl.create({
-      header: 'Respuesta!',
-      subHeader: 'Resultado de la busqueda.',
-      message: 'Al parecer no hay resultados. Intenta con otros filtros.',
-      buttons: ['OK']
-    })
-    await alert.present();
-  }
-
-
-  /**
-   * Método alert async para validar los filtros de orientación
-   */
-  async alertProblemConnect(){
-    const alert = await this.AlertCtrl.create({
-      header: 'Error!',
-      subHeader: 'Problemas de conexión.',
-      message: 'Al parecer hay un problema de conexión. Inténtalo más tarde.',
       buttons: ['OK']
     })
     await alert.present();

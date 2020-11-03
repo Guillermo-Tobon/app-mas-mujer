@@ -1,4 +1,10 @@
 .contResultOrienta{
+  .btnVolver{
+    background-color: transparent;
+    font-size: 32px;
+    position: absolute;
+    z-index: 100;
+  }
   ion-slides{
     ion-card{
       box-shadow: transparent 0px 0px 0px;

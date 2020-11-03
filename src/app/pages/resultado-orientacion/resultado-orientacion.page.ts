@@ -3,8 +3,8 @@ import { OrientacionService } from 'src/app/services/orientacion.service';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { ActionSheetController, AlertController, ModalController } from '@ionic/angular';
 import { ModalMapaAyudaPage } from 'src/app/modals/modal-mapa-ayuda/modal-mapa-ayuda.page';
-import { async } from '@angular/core/testing';
 import { LoadingService } from 'src/app/services/loading.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -23,15 +23,47 @@ export class ResultadoOrientacionPage implements OnInit {
               private iab: InAppBrowser,
               private actSheetCtrl: ActionSheetController,
               private modalCtrl: ModalController,
-              private alertCtrl: AlertController
+              private alertCtrl: AlertController,
+              private route: ActivatedRoute,
+              private router: Router
   ) { }
 
   ngOnInit() {
     //Obtiene el array con la info de orientación
-    this.arrayOrienta = this.OrientaSrv.arrayOrienta;
-
+    //this.arrayOrienta = this.OrientaSrv.arrayOrienta;
+    
     //Obtiene data del localStorage
     this.dataUser = JSON.parse( localStorage.getItem('usuario') );
+
+    //Obtenemos las variables enviadas por url
+    let idVio = this.route.snapshot.paramMap.get('idVio');
+    let idAgre = this.route.snapshot.paramMap.get('idAgre');
+
+    this.getResultOrientacion(idVio, idAgre);
+    
+
+  }
+  
+
+
+  /**
+   * Método para obtener la orientación según ID
+   * @param idVio -> ID violencia
+   * @param idAgre -> ID agresor
+   */
+  public getResultOrientacion = (idVio:any, idAgre:any) =>{
+    this.loadSrv.showLoading('Procesando resultado...');
+
+    this.OrientaSrv.getOrientacionById(idVio, idAgre).subscribe( data =>{
+      
+      if( data['ok'] ){
+        this.arrayOrienta = data['orientacion'];
+
+      } else {
+        this.alertProblemConnect();
+      }
+    });
+    this.loadSrv.hideLoading();
   }
 
 
@@ -116,6 +148,14 @@ export class ResultadoOrientacionPage implements OnInit {
   }
 
 
+  /**
+   * Método que retorna a orientación
+   */
+  public VolverOrientacion = () =>{
+    this.router.navigate(['tabs', 'orientacion']);
+  }
+
+
 
   /**
    * Método para abrir el modal mapa ayuda
@@ -140,6 +180,21 @@ export class ResultadoOrientacionPage implements OnInit {
       message: 'En este momento no se puede obtener las entidades relacinadas. Inténtelo más tarde.',
       buttons: ['OK']
     });
+    await alert.present();
+  }
+
+
+
+  /**
+   * Método alert async para validar los filtros de orientación
+   */
+  async alertProblemConnect(){
+    const alert = await this.alertCtrl.create({
+      header: 'Error!',
+      subHeader: 'Problemas de conexión.',
+      message: 'Al parecer hay un problema de conexión. Inténtalo más tarde.',
+      buttons: ['OK']
+    })
     await alert.present();
   }
 
