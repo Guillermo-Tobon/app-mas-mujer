@@ -78,6 +78,15 @@ export class AppComponent {
   public navConocenos(){
     this.router.navigate(['tabs','conocenos']);
   }
+  
+  /**
+   * Método que navega a entérate
+   */
+  public navEnterate = () =>{
+    this.router.navigate(['tabs','enterate']);
+  }
+
+
 
   /**
    * Método para navegar a Violentómetro

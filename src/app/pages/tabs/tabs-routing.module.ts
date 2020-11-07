@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'manual-uso',
         loadChildren: () => import('../manual-uso/manual-uso.module').then( m => m.ManualUsoPageModule)
+      },
+      {
+        path: 'enterate',
+        loadChildren: () => import('../enterate/enterate.module').then( m => m.EnteratePageModule)
       }
     
     ]
